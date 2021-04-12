@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
+html {
+    font-size: 16px;
+    line-height: 2em;
+}
 * {
     margin: 0;
     padding: 0;
@@ -102,6 +105,16 @@ select:focus {
 .danger:hover {
     background-color: #e20404;
     color: #fff
+}
+
+.rides_table {
+    width: 100%;
+    
+}
+
+.rides_table table, th, td {
+    border: 1px solid black;
+    padding: 0.5em;
 }
 
 @media(max-width:576px) {

@@ -12,13 +12,28 @@
 </head>
 <body>
   <h1> Welcome, Driver</h1>
-  <label for="pickup">Pickup point:</label>
+  <label for="rides_table">Pending Rides:</label>
 
-  <input type="text" id="pickup" name="pickup" required>
-  <label for="destination">destination point:</label>
+  <table id="rides_table">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Pickup</th>
+      <th>Destination</th>
+      <th>$</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>Example Dan</td>
+      <td>1200 Wacky Way</td>
+      <td>2134 SpOoOoky Street</td>
+      <td>$21.34</td>
+    </tr>
+  </table>
 
-  <input type="text" id="destination" name="destination" required>
-  <p>Before the script...</p>
+  <label for="active_ride">Active Ride Info:</label>
+
+  <figure>Info On Current Ride:</figure>
 
   <script src="../rider.js" defer ></script>
 
