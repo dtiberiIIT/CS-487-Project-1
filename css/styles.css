@@ -112,7 +112,7 @@ select:focus {
     
 }
 
-.rides_table table, th, td {
+.rides_table table, th, td, button{
     border: 1px solid black;
     padding: 0.5em;
 }

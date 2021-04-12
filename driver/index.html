@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css"/>
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/styles.css">
+  <script src="driver.js" defer ></script>
   <title> Map for our app  </title>
 </head>
 <body>
@@ -24,14 +25,14 @@
       <th>$</th>
     </tr>
     <tr>
-      <td>0</td>
+      <td><button onClick="selectRide(0)">0</button></td>
       <td>Example Dan</td>
       <td>1200 Wacky Way</td>
       <td>2134 SpOoOoky Street</td>
       <td>$21.34</td>
     </tr>
   </table>
-
+  
   <label for="active_ride">Active Ride Info:</label>
   <table id="rides_table" name="active_ride">
     <tr>
