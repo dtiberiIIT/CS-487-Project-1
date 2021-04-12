@@ -38,6 +38,6 @@ function setupMap(center) {
 
 function myfunction()
 {
-    window.open("rider.html");   
+    window.open("/rider_settings/index.html");   
     console.log("salam");
 }
