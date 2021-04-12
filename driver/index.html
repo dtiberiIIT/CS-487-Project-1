@@ -15,7 +15,7 @@
   <h1> Welcome, Driver</h1>
   <label for="rides_table">Pending Rides:</label>
 
-  <table id="rides_table">
+  <table id="rides_table" name="rides_table">
     <tr>
       <th>ID</th>
       <th>Name</th>
@@ -33,12 +33,25 @@
   </table>
 
   <label for="active_ride">Active Ride Info:</label>
-
-  <figure>Info On Current Ride:</figure>
+  <table id="rides_table" name="active_ride">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Pickup</th>
+      <th>Destination</th>
+      <th>$</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>Example Dan</td>
+      <td>1200 Wacky Way</td>
+      <td>2134 SpOoOoky Street</td>
+      <td>$21.34</td>
+    </tr>
+  </table>
 
   <script src="../rider.js" defer ></script>
 
-  <input type = "button" onclick = "myfunction()" value = "Rider settings">  
   <div id='map' style='width: 800px; height: 700px;margin:0'></div>
 
 </body>
