@@ -442,8 +442,10 @@ https://www.tooplate.com/view/2119-gymso-fitness
     color: var(--white-color);
   }
 
-  .schedule-table span {
-    color: var(--gray-color);
+  .schedule-table td strong,
+  .schedule-table span  {
+    display: block;
+    text-align: center;
   }
 
   .schedule-table span,
@@ -458,8 +460,14 @@ https://www.tooplate.com/view/2119-gymso-fitness
   }
 
   .table .thead-light th,
+
+  .schedule-table th{
+   background: var(--primary-color);
+    border: 1px solid #212122;
+    color: var(--white-color);
+  }
   .schedule-table tr td:first-child {
-    background: var(--primary-color);
+  /*  background: var(--primary-color);*/
     border: 1px solid #212122;
     color: var(--white-color);
   }
