@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <style>
+        input.largerCheckbox {
+            width: 35px;
+            height: 20px;
+        }
+    </style>
+
+  <script type="text/JavaScript">
+   function OnDropDownChange(dropDown)
+   {
+   var selectedValue = dropDown.options[dropDown.selectedIndex].value;
+   document.getElementById("txtSelectedCapital").innerHTML = selectedValue;
+   }
+   </script>
+
+     <title>Get A Ride</title>
+
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+     <link rel="stylesheet" href="css/font-awesome.min.css">
+     <link rel="stylesheet" href="css/aos.css">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="css/tooplate-gymso-style.css">
+
+<!--map style-->
+  <meta name="viewport" content="width=device-width ,initial-scale=1.0" >
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css"/>
+  <title> Map for our app  </title>
+</head>
+
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
+    <!-- MENU BAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+
+            <a class="navbar-brand" href="index.html">Get A Ride</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-lg-auto">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link smoothScroll">My Trips</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link smoothScroll">Account</a>
+                    </li>
+
+                    <li class="nav-item">
+                   <a href="#help" class="nav-link smoothScroll">Help</a>
+                 </li>
+
+
+                 <li class="nav-item">
+                     <a href="#help" class="nav-link smoothScroll">Logout</a>
+                 </li>
+             </ul>
+             </div>
+             </div>
+             </nav>
+
+
+
+             <section class="about section d-flex flex-column justify-content-center align-items-center"id="LOGINAS">
+
+                 <form >
+                   <div class="container">
+                     <div class="col-lg-8 col-md-10 mx-auto col-12">
+                     <h4><center> Welcome Rider!</center></h4>
+                     <p><center>Choose Your Ride below by entering the details below</p></center>
+                     <p><center> Click on the map to search ride by pin location</p></center>
+                     <hr>
+
+                     <form action="#" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
+
+                        <!--   <label for="pickup"><b>Pickup Location</b></label> -->
+                         <input type="text" class="form-control" placeholder="Enter pickup Location">
+
+                        <!--   <label for="Destination"><b>Destination</b></label> -->
+                         <input type="text" class="form-control" name="Destination" placeholder="Enter Destination">
+
+
+
+                           <select name="Car Type" id="Car Type" class="form-control">
+                             <option value=""> Select Car Type</option>
+               <option value="CC1" > 4 Seater</option>
+               <option value="CC2">6 Seater</option>
+               <option value="CC3">7 Seater</option>
+               <option value="CC4">Mini Van</option>
+               <option value="CC4">SUV</option>
+           </select>
+<center><label><h5>Share the ride    </h5></label>
+             <input type="checkbox" name="remember" class="largerCheckbox" style="margin-bottom:10px " ></center>
+
+
+
+
+                  <button type="submit" class="form-control" id="submit-button" name="submit">Find Ride</button>
+
+
+                     </div>
+                   </div>
+
+  <div id='map' style='width: 800px; height: 700px;margin:0'></div>
+
+ </form>
+  </section>
+
+
+
+  <script src="js/rider.js" defer ></script>
+
+       <!-- Help -->
+       <section class="contact section" id="help">
+            <div class="container">
+                 <div class="row">
+
+                      <div class="ml-auto col-lg-5 col-md-6 col-12">
+                          <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Ask us!</h2>
+
+                          <form action="#" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
+                              <input type="text" class="form-control" name="cf-name" placeholder="Name">
+
+                              <input type="email" class="form-control" name="cf-email" placeholder="Email">
+
+                              <textarea class="form-control" rows="5" name="cf-message" placeholder="Message"></textarea>
+
+                              <button type="submit" class="form-control" id="submit-button" name="submit">Send Message</button>
+                          </form>
+                      </div>
+
+                      <div class="mx-auto mt-4 mt-lg-0 mt-md-0 col-lg-5 col-md-6 col-12">
+                          <h2 class="mb-4" data-aos="fade-up" data-aos-delay="600">Where you can <span>find us</span></h2>
+
+                          <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i> 10 W 35th St, Chicago, IL 60616</p>
+
+
+                          <div class="google-map" data-aos="fade-up" data-aos-delay="900">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2972.8560995569273!2d-87.62941788442672!3d41.83139667922594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2c0dc295bb79%3A0xadab1812fe07c549!2sIit%20Tower%2C%2010%20W%2035th%20St%2C%20Chicago%2C%20IL%2060616!5e0!3m2!1sen!2sus!4v1618192032425!5m2!1sen!2sus" width="1920" height="250" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+                          </div>
+                      </div>
+
+                 </div>
+            </div>
+       </section>
+
+
+       <!-- FOOTER -->
+       <footer class="site-footer">
+            <div class="container">
+                 <div class="row">
+
+                      <div class="ml-auto col-lg-4 col-md-5">
+                          <p class="copyright-text">Copyright &copy;GetARide
+
+                          <br>
+                      </div>
+
+                      <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
+                          <p class="mr-4">
+                              <i class="fa fa-envelope-o mr-1"></i>
+                              <a href="#">hello@getaride.co</a>
+                          </p>
+
+
+                          <p><i class="fa fa-phone mr-1"></i> 674-647-6677</p>
+
+                          <ul class="social-icon ml-lg-3">
+                              <li><a href="#http://facebook.com" class="fa fa-facebook"></a></li>
+                              <li><a href="#" class="fa fa-twitter"></a></li>
+                              <li><a href="#" class="fa fa-instagram"></a></li>
+                          </ul>
+                      </div>
+
+                 </div>
+            </div>
+       </footer>
+
+
+          </div>
+        </div>
+      </div>
+
+       <!-- SCRIPTS -->
+       <script src="js/jquery.min.js"></script>
+       <script src="js/bootstrap.min.js"></script>
+       <script src="js/aos.js"></script>
+       <script src="js/smoothscroll.js"></script>
+       <script src="js/custom.js"></script>
+
+  </body>
+  </html>
