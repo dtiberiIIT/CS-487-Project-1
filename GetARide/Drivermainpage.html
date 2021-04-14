@@ -45,27 +45,33 @@
               <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ml-lg-auto">
-                  <li class="nav-item">
-                  </li>
+          
 
-                  <li class="nav-item">
-                      <a href="#about" class="nav-link smoothScroll">Account</a>
-                  </li>
+                     <div class="collapse navbar-collapse" id="navbarNav">
+                         <ul class="navbar-nav ml-lg-auto">
+                           <li class="nav-item">
+                               <a href="Drivermainpage.html" class="nav-link smoothScroll">Home</a>
+                           </li>
+                             <li class="nav-item">
+                                 <a href="DriverTripHistory.html" class="nav-link smoothScroll">My Trips</a>
+                             </li>
 
-                  <li class="nav-item">
-                 <a href="#help" class="nav-link smoothScroll">Help</a>
-               </li>
+                             <li class="nav-item">
+                                 <a href="Driverprofile.html" class="nav-link smoothScroll">Account</a>
+                             </li>
+
+                             <li class="nav-item">
+                            <a href="#help" class="nav-link smoothScroll">Help</a>
+                          </li>
 
 
-               <li class="nav-item">
-                   <a href="#help" class="nav-link smoothScroll">Logout</a>
-               </li>
-           </ul>
-           </div>
-           </div>
-           </nav>
+                          <li class="nav-item">
+                              <a href="Driverlogin.html" class="nav-link smoothScroll">Logout</a>
+                          </li>
+                      </ul>
+                      </div>
+                      </div>
+                      </nav>
 <!--
 
     <section class="about section d-flex flex-column justify-content-center align-items-center" >
@@ -128,69 +134,6 @@
             </div>
 <br>
 <br>
-<br>
-<br>
-
-<!--
-<div><center>
-
-  <h4><b><center> Active Ride </center></b></h4>
-  <table id="rides_table" name="active_ride">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Pickup</th>
-      <th>Destination</th>
-        <th>Duration</th>
-      <th>$</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Example Dan</td>
-      <td>1200 Wacky Way</td>
-      <td>2134 SpOoOoky Street</td>
-      <td>20 min</td>
-      <td>$21.34</td>
-    </tr>
-  </table>
-
-  <br><br><br><br>
-
-<h4><b><center> Pending Rides</center></b></h4>
-              <table id="rides_table" name="rides_table">
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Pickup</th>
-                  <th>Destination</th>
-                  <th>Duration</th>
-                  <th>Approximate $</th>
-
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Mike </td>
-                  <td>1200 Ct </td>
-                  <td>245 Adam road</td>
-                  <td>30 min</td>
-                  <td>$34.00 </td>
-                  <td>  <button type="submit" id="submit-button" name="submit"> Accept</button></td>
-                  <td>  <button type="submit"  id="submit-button" name="submit"> Deny</button></td>
-                </tr>
-
-                <tr>
-                  <td>2</td>
-                  <td>Smith </td>
-                  <td>1067 Ct </td>
-                  <td>56 St.larent street</td>
-                  <td>25 min</td>
-                  <td>$26.00 </td>
-                  <td>  <button type="submit"  id="submit-button" name="submit"> Accept</button></td>
-                  <td>  <button type="submit"  id="submit-button" name="submit"> Deny</button></td>
-                </tr>
-              </table>
-
-            </div></center>-->
 </section>
 
 
@@ -259,7 +202,8 @@
                                         <td><strong>245 Adam road</strong></td>
                                         <td><strong>30 min</strong></td>
                                         <td><strong>$34.00 </strong></td>
-                                        <td>  <button type="submit" id="submit-button" name="submit"> Accept</button></td>
+                                        <td>  <button type="submit" id="submit-button" name="submit">
+                                          <a href="#"  data-toggle="modal" data-target="#membershipForm">Accept</a></button></td>
                                         <td>  <button type="submit"  id="submit-button" name="submit"> Deny</button></td>
                                       </tr>
 
@@ -270,7 +214,9 @@
                                         <td><strong>56 St.larent street</strong></td>
                                         <td><strong>25 min</strong></td>
                                         <td><strong>$26.00 </strong></td>
-                                        <td>  <button type="submit"  id="submit-button" name="submit"> Accept</button></td>
+                                        <td>  <button type="submit"  id="submit-button" name="submit">
+                                          <a href="#"  data-toggle="modal" data-target="#membershipForm">Accept</a></button></td>
+
                                         <td>  <button type="submit"  id="submit-button" name="submit"> Deny</button></td>
                                       </tr>
 
@@ -355,6 +301,54 @@
              </div>
            </div>
          </div>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="membershipForm" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+
+                    <div class="modal-content">
+                      <div class="modal-header">
+
+                        <h3 class="modal-title" id="membershipFormLabel"> <center>Confirm to Start the Ride</center></h3>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+                      <div class="modal-body">
+                        <form class="membership-form webform" role="form">
+                       <br>
+                       <p>Please review the trip details to start</p>
+                       <br>
+                       <label><h5>User Name: Mike  </h5></label>
+                       <br>
+                       <label><h5>Trip Duration: 30min</h5></label>
+                       <br>
+                       <label><h5>Estimated Fare: $34.00</h5></label>
+                       <br>
+                       <label><h5>Pickup location: 1200 Ct  </h5></label>
+                       <br>
+                       <label><h5>Destination: 245 Adam road</h5></label>
+                       <br>
+
+                            <!-- edit your labels here-->
+
+                            <button type="submit" class="form-control" id="submit-button" name="submit">Start Ride</button>
+                            <button type="submit" class="form-control" id="submit-button" name="submit">Cancel</button>
+
+
+                            </div>
+                        </form>
+                      </div>
+
+                      <div class="modal-footer"></div>
+
+                    </div>
+                  </div>
+                </div>
+
 
           <!-- SCRIPTS , add your javascripts here-->
           <script src="js/jquery.min.js"></script>
