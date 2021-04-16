@@ -49,14 +49,71 @@ function getUserID(email){
         } catch (error) {
             res = -1
         }
-            if(res == null){
+        if(res == null || res == undefined){
             res = -1;
         }
         return res;
     }
 }
 
+//Create new user using given params.
 function newUser(email, password, fname, lname, dob){
     alasql("INSERT INTO users (email, password, fname, lname, dob) \
     VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname + "', " + dob + ")");
+}
+
+//Create new driver using given params. Defaults rating to 5.0. Routing number and last background check are set to NULL.
+function newDriver(email, password, fname, lname){
+    alasql("INSERT INTO drivers (email, password, fname, lname, is_avail, avg_rating, num_trips, routing_number, last_background_check)  \
+    VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname +"', false, 5.0, 0, NULL, NULL)");
+}
+
+/*
+Returns user data from the DB given an ID. The data is stored in a generic object as parameters. 
+If the user does not exist or an invalid ID is given, it will return -1.
+*/
+function getUser(id){
+    if(!typeof id == "number"){
+        console.log("Not a number");
+        return -1;
+    }
+    else{
+        res = -2; //Should never reach this 
+        try{
+            res = Object.values(alasql("SELECT * FROM users WHERE user_id=" + id+""))[0];
+        } catch (error) {
+            res = -1
+            console.log("alasql Error");
+        }
+            if(res == null || res == undefined){
+            res = -1;
+            console.log("Undefined");
+        }
+        return res;
+    }
+}
+
+/*
+Returns driver data from the DB given an ID. The data is stored in a generic object as parameters. 
+If the driver does not exist or an invalid ID is given, it will return -1.
+*/
+function getDriver(id){
+    if(!typeof id == "number"){
+        console.log("Not a number");
+        return -1;
+    }
+    else{
+        res = -2; //Should never reach this 
+        try{
+            res = Object.values(alasql("SELECT * FROM drivers WHERE driver_id=" + id+""))[0];
+        } catch (error) {
+            res = -1
+            console.log("alasql Error");
+        }
+            if(res == null || res == undefined){
+            res = -1;
+            console.log("Undefined");
+        }
+        return res;
+    }
 }

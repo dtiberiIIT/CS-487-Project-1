@@ -36,10 +36,16 @@ window.onload = function() {
 function populate(tog){
     if(tog){
         addDummyUser();
+        addDummyUser();
+        addDummyUser();
         addDummyDriver(true);
-        //newUser("Dt@gmail.com", "abc123", "Bob", "Bobbyson", "1947-2-15");
+        newUser("Dt@gmail.com", "abc123", "Bob", "Bobbyson", "1947-2-15");
+        //newDriver("NormalManDan@aol.com", "abc123", "Dan", "Notmehehe");
 
-        console.log("!", alasql("SELECT * FROM users"));
+        //console.log("!", alasql("SELECT * FROM drivers"));
+        //console.log("!", alasql("SELECT * FROM users"));
         //console.log(getDriverID("aveillon@hawk.iit.edu"));
+        //console.log(getUser(getUserID("Dt@gmail.com")));
+        //console.log(getDriver(1));
     }
 }
