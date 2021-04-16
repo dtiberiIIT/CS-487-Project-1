@@ -1,9 +1,17 @@
+/*
+Creates dummy user for testing.
+-Dan Tiberi
+*/
 function addDummyUser(){
     alasql("INSERT INTO users (email, password, fname, lname, dob) \
     VALUES ('dtiberi@hawk.iit.edu', 'abc123', 'Dan', 'Tiberi', 1975-04-23)");
 }
 
-//isAvail, boolean, will denote if the driver will be entered as available.
+/*
+Creates dummy driver for testing.
+isAvail, boolean, will denote if the driver will be entered as available. 
+-Dan Tiberi
+*/
 function addDummyDriver(isAvail){
     alasql("INSERT INTO drivers \
     (email, password, fname, lname, is_avail, avg_rating, num_trips, routing_number, last_background_check) \
@@ -56,13 +64,16 @@ function getUserID(email){
     }
 }
 
-//Create new user using given params.
+//Create new user using given params. -Dan Tiberi
 function newUser(email, password, fname, lname, dob){
     alasql("INSERT INTO users (email, password, fname, lname, dob) \
     VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname + "', " + dob + ")");
 }
 
-//Create new driver using given params. Defaults rating to 5.0. Routing number and last background check are set to NULL.
+/*
+Create new driver using given params. Defaults rating to 5.0. Routing number and last background check are set to NULL.
+-Dan Tiberi
+*/
 function newDriver(email, password, fname, lname){
     alasql("INSERT INTO drivers (email, password, fname, lname, is_avail, avg_rating, num_trips, routing_number, last_background_check)  \
     VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname +"', false, 5.0, 0, NULL, NULL)");
@@ -71,6 +82,7 @@ function newDriver(email, password, fname, lname){
 /*
 Returns user data from the DB given an ID. The data is stored in a generic object as parameters. 
 If the user does not exist or an invalid ID is given, it will return -1.
+-Dan Tiberi
 */
 function getUser(id){
     if(!typeof id == "number"){
@@ -96,6 +108,7 @@ function getUser(id){
 /*
 Returns driver data from the DB given an ID. The data is stored in a generic object as parameters. 
 If the driver does not exist or an invalid ID is given, it will return -1.
+-Dan Tiberi
 */
 function getDriver(id){
     if(!typeof id == "number"){
