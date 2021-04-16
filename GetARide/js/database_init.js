@@ -38,5 +38,6 @@ function populate(tog){
         addDummyUser();
         addDummyDriver(true);
         //console.log("!", alasql("SELECT * FROM users"));
+        console.log(getDriverID("aveillon@hawk.iit.edu"));
     }
 }
