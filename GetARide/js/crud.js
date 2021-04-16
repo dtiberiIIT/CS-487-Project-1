@@ -20,6 +20,15 @@ function getDriverID(email){
         return -1;
     }
     else{
-        return Object.values(alasql("SELECT driver_id FROM drivers WHERE email='" + email+"'"))[0].driver_id;
+        res = -2;
+        try{
+            res = Object.values(alasql("SELECT driver_id FROM drivers WHERE email='" + email+"'"))[0].driver_id;
+        } catch (error) {
+            res = -1
+        }
+            if(res == null){
+            res = -1;
+        }
+        return res;
     }
 }
