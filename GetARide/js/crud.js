@@ -7,7 +7,7 @@ function addDummyUser(){
 function addDummyDriver(isAvail){
     alasql("INSERT INTO drivers \
     (email, password, fname, lname, is_avail, avg_rating, num_trips, routing_number, last_background_check) \
-    VALUES ('aveillon@hawk.iit.edu', 'abc123' , 'Ange', 'Veillon', TRUE , 4.99, 3425, 'BanksAreFriendsNotFood', 2021-04-15)");
+    VALUES ('aveillon@hawk.iit.edu', 'abc123' , 'Ange', 'Veillon', " + isAvail + " , 4.99, 3425, 'BanksAreFriendsNotFood', 2021-04-15)");
 }
 
 /*
