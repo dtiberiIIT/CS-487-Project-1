@@ -32,3 +32,31 @@ function getDriverID(email){
         return res;
     }
 }
+
+/*
+Given email address, will return the user_id (int) with that email address. 
+If given invalid input or if user does not exist, will return -1.
+-Dan Tiberi
+*/
+function getUserID(email){
+    if(!typeof email == "string"){
+        return -1;
+    }
+    else{
+        res = -2;
+        try{
+            res = Object.values(alasql("SELECT user_id FROM users WHERE email='" + email+"'"))[0].user_id;
+        } catch (error) {
+            res = -1
+        }
+            if(res == null){
+            res = -1;
+        }
+        return res;
+    }
+}
+
+function newUser(email, password, fname, lname, dob){
+    alasql("INSERT INTO users (email, password, fname, lname, dob) \
+    VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname + "', " + dob + ")");
+}
