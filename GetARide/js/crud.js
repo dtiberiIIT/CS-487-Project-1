@@ -32,6 +32,7 @@ function getDriverID(email){
         try{
             res = Object.values(alasql("SELECT driver_id FROM drivers WHERE email='" + email+"'"))[0].driver_id;
         } catch (error) {
+            console.log("Alasql Error: ", error);
             res = -1
         }
             if(res == null){
@@ -55,6 +56,7 @@ function getUserID(email){
         try{
             res = Object.values(alasql("SELECT user_id FROM users WHERE email='" + email+"'"))[0].user_id;
         } catch (error) {
+            console.log("Alasql Error: ", error);
             res = -1
         }
         if(res == null || res == undefined){
@@ -86,7 +88,7 @@ If the user does not exist or an invalid ID is given, it will return -1.
 */
 function getUser(id){
     if(!typeof id == "number"){
-        console.log("Not a number");
+        console.log("Invlaid user_id: ", id);
         return -1;
     }
     else{
@@ -95,7 +97,7 @@ function getUser(id){
             res = Object.values(alasql("SELECT * FROM users WHERE user_id=" + id+""))[0];
         } catch (error) {
             res = -1
-            console.log("alasql Error");
+            console.log("Alasql Error: ", error);
         }
             if(res == null || res == undefined){
             res = -1;
@@ -112,7 +114,7 @@ If the driver does not exist or an invalid ID is given, it will return -1.
 */
 function getDriver(id){
     if(!typeof id == "number"){
-        console.log("Not a number");
+        console.log("Invlaid driver_id: ", id);
         return -1;
     }
     else{
@@ -121,7 +123,7 @@ function getDriver(id){
             res = Object.values(alasql("SELECT * FROM drivers WHERE driver_id=" + id+""))[0];
         } catch (error) {
             res = -1
-            console.log("alasql Error");
+            console.log("Alasql Error: ", error);
         }
             if(res == null || res == undefined){
             res = -1;
@@ -138,7 +140,7 @@ If the ride does not exist or an invalid ID is given, it will return -1.
 */
 function getRide(id){
     if(!typeof id == "number"){
-        console.log("Not a number");
+        console.log("Invlaid ride_id: ", id);
         return -1;
     }
     else{
@@ -147,7 +149,7 @@ function getRide(id){
             res = Object.values(alasql("SELECT * FROM ride WHERE ride_id=" + id+""))[0];
         } catch (error) {
             res = -1
-            console.log("alasql Error");
+            console.log("Alasql Error: ", error);
         }
             if(res == null || res == undefined){
             res = -1;
