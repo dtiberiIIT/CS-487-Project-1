@@ -184,3 +184,29 @@ function getVehicle(id){
         return res;
     }
 }
+
+/*
+Returns payment data from the DB given an ID. The data is stored in a generic object as parameters. 
+If the payment method does not exist or an invalid ID is given, it will return -1.
+-Dan Tiberi
+*/
+function getPaymentInfo(id){
+    if(!typeof id == "number"){
+        console.log("Invlaid card_id: ", id);
+        return -1;
+    }
+    else{
+        res = -2; //Should never reach this 
+        try{
+            res = Object.values(alasql("SELECT * FROM payment_info WHERE card_id=" + id+""))[0];
+        } catch (error) {
+            res = -1
+            console.log("Alasql Error: ", error);
+        }
+            if(res == null || res == undefined){
+            res = -1;
+            console.log("Undefined card.");
+        }
+        return res;
+    }
+}
