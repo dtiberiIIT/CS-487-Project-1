@@ -99,7 +99,7 @@ function getUser(id){
         }
             if(res == null || res == undefined){
             res = -1;
-            console.log("Undefined");
+            console.log("Undefined user");
         }
         return res;
     }
@@ -125,7 +125,33 @@ function getDriver(id){
         }
             if(res == null || res == undefined){
             res = -1;
-            console.log("Undefined");
+            console.log("Undefined driver");
+        }
+        return res;
+    }
+}
+
+/*
+Returns ride data from the DB given an ID. The data is stored in a generic object as parameters. 
+If the ride does not exist or an invalid ID is given, it will return -1.
+-Dan Tiberi
+*/
+function getRide(id){
+    if(!typeof id == "number"){
+        console.log("Not a number");
+        return -1;
+    }
+    else{
+        res = -2; //Should never reach this 
+        try{
+            res = Object.values(alasql("SELECT * FROM ride WHERE ride_id=" + id+""))[0];
+        } catch (error) {
+            res = -1
+            console.log("alasql Error");
+        }
+            if(res == null || res == undefined){
+            res = -1;
+            console.log("Undefined ride.");
         }
         return res;
     }
