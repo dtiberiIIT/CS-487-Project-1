@@ -40,6 +40,8 @@ function populate(tog){
         addDummyUser();
         addDummyDriver(true);
         newUser("Dt@gmail.com", "abc123", "Bob", "Bobbyson", "1947-2-15");
+        //set("users", "fname", "Obama", 1);
+        //console.log(retrieve("users", "fname", 1));
         //newDriver("NormalManDan@aol.com", "abc123", "Dan", "Notmehehe");
 
         //console.log("!", alasql("SELECT * FROM drivers"));
