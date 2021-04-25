@@ -18,6 +18,10 @@
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/tooplate-gymso-style.css">
 
+     <script src="https://cdn.jsdelivr.net/npm/alasql@1.7.2/dist/alasql.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/0.3.2/js/sql.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
+
 </head>
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
@@ -136,7 +140,7 @@
 <section class="about section d-flex flex-column justify-content-center align-items-center" id="LOGINAS">
 
 
-    <form style="border:1px solid #ccc">
+    <form id= "regform" style="border:1px solid #ccc">
       <div class="container">
         <h4>Driver's Registration form</h4>
         <p>Please fill in this form to create an account</p>
@@ -145,6 +149,12 @@
         <label for="name"><b>User Name</b></label>
         <input type="text" placeholder="Enter Your Name" name="username" required>
 
+        <label for="firstname"><b>First Name</b></label>
+        <input type="text" placeholder="Enter Your First Name" name="fname" required>
+
+        <label for="lastname"><b>Last Name</b></label>
+        <input type="text" placeholder="Enter Your Last Name" name="lname" required>
+
         <label for=""><b>Driver's License Number</b></label>
         <input type="text" placeholder="Enter Your Driver's License Number" name="email" required>
 
@@ -152,13 +162,13 @@
         <input type="text" placeholder="Enter Vehicle Number Plate" name="vehiclenumber" required>
 
         <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required>
+        <input type="text" placeholder="Enter Email" name="emaili" required>
 
         <label for="email"><b>Phone Number</b></label>
         <input type="text" placeholder="Enter Phone Number" name="phone" required>
 
         <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" placeholder="Enter Password" name="pswi" required>
 
         <label for="psw-repeat"><b>Repeat Password</b></label>
         <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
@@ -171,7 +181,7 @@
 
         <div class="clearfix">
           <button type="button" class="cancelbtn">Cancel</button>
-          <button type="submit" class="signupbtn">Sign Up</button>
+          <button type="button" onclick="driverreg()"  class="signupbtn">Sign Up  </button>
         </div>
       </div>
     </form>
@@ -262,6 +272,18 @@
      <script src="js/aos.js"></script>
      <script src="js/smoothscroll.js"></script>
      <script src="js/custom.js"></script>
+     <script src="js/crud.js"></script>
+     <script src="js/database_init.js"></script>
+     <script type="text/javascript">
+     function driverreg()
+     {
+        var inputs = document.getElementById("regform").elements;   
+        var email = inputs["emaili"].value;
+        var fname = inputs["fname"].value;
+        var lname = inputs["lname"].value;
+        var pwd = inputs["pswi"].value;
+        newDriver(email,pwd,fname,lname);
+     }</script>
 
 </body>
 </html>
