@@ -293,8 +293,40 @@ function load() {
     alasql("USE mdb");
 }
 
+/*
+Creates a new ride using given parameters.
+-Dan Tiberi
+*/
 function newRide(passenger_id, driver_id, vehicle_id, fee, tax, origin, destination, start_time, end_time, user_rating, payment_card_id) {
     alasql("INSERT INTO rides (passenger_id, driver_id, vehicle_id, fee, tax, origin, destination, start_time, end_time, user_rating, payment_card_id) VALUES (" + passenger_id+","+ driver_id+","+  vehicle_id+","+  fee+","+ tax + ",'" + origin +"','"+  destination+"',"+  start_time+","+  end_time+","+  user_rating+","+  payment_card_id+")");
 }
 
+/*
+Sets ride to given status. Returns 1 if successful
+*/
+function setRideStatus(id, status) {
+    if(!typeof id == "number"){
+        console.log("Invlaid ride_id: ", id);
+        return -1;
+    }
+    else if(!typeof status == "boolean"){
+        console.log("Invlaid ride status: " + status);
+        return -1;
+    }
+    else{
+        res = -2; 
+        try{
+            alasql("UPDATE rides set status = " + status + " WHERE ride_id = " + id)
+            res = 1;
+        } catch (error) {
+            res = -1
+            console.log("Alasql Error: ", error);
+        }
+            if(res == null || res == undefined){
+            res = -1;
+            console.log("Undefined ride");
+        }
+        return res;
+    }
+}
 

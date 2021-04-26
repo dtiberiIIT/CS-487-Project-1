@@ -41,8 +41,8 @@ function populate(tog){
         addDummyDriver(true);
         newUser("Dt@gmail.com", "abc123", "Bob", "Bobbyson", "1947-2-15");
 
-        //newRide(1,2,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
-
+        newRide(1,2,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
+        setRideStatus(1, true);
         //set("users", "fname", "Obama", 1);
 
         console.log(alasql("SELECT * FROM rides"));
