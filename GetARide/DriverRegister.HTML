@@ -277,12 +277,16 @@
      <script type="text/javascript">
      function driverreg()
      {
+        //alasql("ATTACH localStorage DATABASE mdb AS mdb");
+        //alasql("USE mdb");
         var inputs = document.getElementById("regform").elements;   
         var email = inputs["emaili"].value;
         var fname = inputs["fname"].value;
         var lname = inputs["lname"].value;
         var pwd = inputs["pswi"].value;
         newDriver(email,pwd,fname,lname);
+
+        console.log(retrieve("drivers", "avg_rating", 2));
      }</script>
 
 </body>

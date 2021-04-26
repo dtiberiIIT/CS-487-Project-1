@@ -282,3 +282,13 @@ function retrieve(table, field, id) {
         return null;
     }
 }
+
+/*
+Loads DB into current page.
+See example in First Name field of Rideprofile.html
+-Dan Tiberi
+*/
+function load() {
+    alasql("ATTACH localStorage DATABASE mdb AS mdb");
+    alasql("USE mdb");
+}
