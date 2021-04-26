@@ -24,7 +24,7 @@ window.onload = function() {
 
     //Create tables
     alasql("DROP TABLE IF EXISTS users, drivers, ride, payment_info, vehicles"); //Remove existing tables. 
-    alasql("CREATE TABLE IF NOT EXISTS users (user_id INT NOT NULL AUTO_INCREMENT, email VARCHAR(50), password VARCHAR(50), fname VARCHAR(30), lname VARCHAR(30), dob Date, PRIMARY KEY (user_id))");
+    alasql("CREATE TABLE IF NOT EXISTS users (user_id INT NOT NULL AUTO_INCREMENT, email VARCHAR(50), password VARCHAR(50), fname VARCHAR(30), lname VARCHAR(30), PRIMARY KEY (user_id))");
     alasql("CREATE TABLE IF NOT EXISTS drivers (driver_id INT NOT NULL AUTO_INCREMENT, email VARCHAR(50), password VARCHAR(50), fname VARCHAR(30), lname VARCHAR(30), is_avail BOOLEAN, avg_rating DOUBLE, num_trips INT, routing_number VARCHAR(30), last_background_check DATETIME, PRIMARY KEY (driver_id))");
     alasql("CREATE TABLE IF NOT EXISTS rides (ride_id INT NOT NULL AUTO_INCREMENT, passenger_id INT, driver_id INT, vehicle_id INT, fee DOUBLE, tax DOUBLE, origin VARCHAR(50), destination VARCHAR(50), distance DOUBLE, start_time DATETIME, end_time DATETIME, user_rating INT, payment_card_id INT, status BOOLEAN, PRIMARY KEY (ride_id))");
     alasql("CREATE TABLE IF NOT EXISTS payment_info (card_id INT NOT NULL AUTO_INCREMENT, user_id INT, card_number VARCHAR(20), card_cvv INT, card_type VARCHAR(20), PRIMARY KEY (card_id))");
