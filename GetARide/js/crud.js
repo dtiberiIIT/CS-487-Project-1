@@ -330,3 +330,29 @@ function setRideStatus(id, status) {
     }
 }
 
+/*
+Set all rides to a given status. Returns 1 if successful.
+-Dan Tiberi
+*/
+function setAllRidesStatus(status){
+    if(!typeof status == "boolean"){
+        console.log("Invlaid ride status: " + status);
+        return -1;
+    }
+    else{
+        res = -2; 
+        try{
+            alasql("UPDATE rides set status = " + status)
+            res = 1;
+        } catch (error) {
+            res = -1
+            console.log("Alasql Error: ", error);
+        }
+            if(res == null || res == undefined){
+            res = -1;
+            console.log("Undefined ride");
+        }
+        return res;
+    }
+}
+
