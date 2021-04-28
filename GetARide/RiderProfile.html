@@ -106,19 +106,19 @@
 
                           <form action="#" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
 
-                            <label for="fname"><b><script>load(); document.write(getUser(getUserID("Dt@gmail.com")).fname)</script></b></label>
+                            <label for="fname"><b><script>load(); document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).fname)</script></b></label>
                               <input type="text" class="form-control" name="cf-name" placeholder="FirstName">
 
-                              <label for="lname"><b>LastName</b></label>
+                              <label for="lname"><b><script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).lname)</script></b></label>
                               <input type="email" class="form-control" name="cf-name" placeholder="LastName">
 
-                              <label for="email"><b>Email</b></label>
+                              <label for="email"><b><script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).email)</script></b></label>
                               <input type="text" class="form-control" placeholder="Enter Email" name="cf-email" >
 
-                              <label for="number"><b>Phone Number</b></label>
+                              <label for="number"><b>TODO-Add rider phone number to db</b></label>
                               <input type="text" placeholder="Enter Phone Number"  class="form-control">
 
-                              <label for="Payment"><b>Payment method</b></label>
+                              <label for="Payment"><b><script>document.write(getPaymentInfo(window.localStorage.getItem('rider_email'), window.localStorage.getItem('rider_pass')).card_type + ": " + getPaymentInfo(window.localStorage.getItem('rider_email'), window.localStorage.getItem('rider_pass')).card_number)</script></b></label>
 
 
 

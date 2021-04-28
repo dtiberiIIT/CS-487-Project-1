@@ -45,6 +45,8 @@ function populate(tog){
         newRide(1,1,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
         newRide(1,3,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
 
+        newPaymentMethod(4, "1234 5678 9101", 223, "Visa")
+
         setAllRidesStatus(false);
 
         //setRideStatus(1, true);

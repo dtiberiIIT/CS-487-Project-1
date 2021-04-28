@@ -212,6 +212,35 @@ function getPaymentInfo(id){
 }
 
 /*
+Returns payment data from the DB given an email + password. The data is stored in a generic object as parameters. 
+If it fails then it will return -1.
+-Dan Tiberi
+*/
+function getPaymentInfo(email, password){
+    if(!typeof email == "string" || !typeof password == "string"){
+        console.log("Invlaid credentials");
+        return -1;
+    }
+    else if (getUser(getUserID(email)).password == password){
+        res = -2; //Should never reach this 
+        try{
+            res = Object.values(alasql("SELECT * FROM payment_info WHERE user_id=" + getUserID(email)))[0];
+        } catch (error) {
+            res = -1
+            console.log("Alasql Error: ", error);
+        }
+            if(res == null || res == undefined){
+            res = -1;
+            console.log("Undefined card.");
+        }
+        return res;
+    }
+    else {
+        return -1;
+    }
+}
+
+/*
 Set the given field in the given table to the given value at given id. 
 Meant for general purpose inserts when a more specific function
 is not availible. Returns 1 if successful. 
