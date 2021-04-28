@@ -72,7 +72,7 @@ function driverLogin(){
             window.localStorage.setItem('driver_email', user.email);
             window.localStorage.setItem('driver_pass', user.password);
 
-            console.log(window.localStorage.getItem('driver_email'), window.localStorage.getItem('driver_pass'));
+            //console.log(window.localStorage.getItem('driver_email'), window.localStorage.getItem('driver_pass'));
 
             //TODO: PROCEED TO NEXT PAGE
         }
