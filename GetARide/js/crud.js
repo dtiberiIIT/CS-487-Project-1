@@ -311,6 +311,7 @@ function newRide(passenger_id, driver_id, vehicle_id, fee, tax, origin, destinat
 
 /*
 Sets ride to given status. Returns 1 if successful
+-Dan Tiberi
 */
 function setRideStatus(id, status) {
     if(!typeof id == "number"){
