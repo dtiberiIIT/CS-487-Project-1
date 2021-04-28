@@ -8,13 +8,7 @@
 //Init DB file
 // NOTE! start and end changed to start_time and end_time
 window.onload = function() {
-    // alasql("SET AUTOCOMMIT ON");
-    // alasql("CREATE localStorage DATABASE IF NOT EXISTS mdb");
-    // alasql("ATTACH localStorage DATABASE mdb AS mdb");
-    // alasql("USE mdb");
-    // alasql("CREATE TABLE users (user_id INT NOT NULL AUTO_INCREMENT, fname VARCHAR(30), lname VARCHAR(30), dob DATE, PRIMARY KEY (user_id))");
-    // alasql("INSERT INTO users (fname, lname) VALUES ('dan', 'tiberi')");
-    // console.log("!", alasql("SELECT * FROM users"));
+    localStorage.clear();//Clear localstorage
 
     //Init database and save in local storage.
     alasql("SET AUTOCOMMIT ON");
@@ -39,11 +33,17 @@ function populate(tog){
         addDummyUser();
         addDummyUser();
         addDummyDriver(true);
+        addDummyDriver(true);
+        addDummyDriver(true);
+
         newUser("Dt@gmail.com", "abc123", "Bob", "Bobbyson", "1947-2-15");
 
         newRide(1,2,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
-        newRide(1,2,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
-        newRide(1,2,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
+        newRide(1,2,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,4,0);
+        newRide(1,2,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,2,0);
+
+        newRide(1,1,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
+        newRide(1,3,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
 
         setAllRidesStatus(false);
 
@@ -51,6 +51,8 @@ function populate(tog){
         //set("users", "fname", "Obama", 1);
 
         console.log(alasql("SELECT * FROM rides"));
+
+        console.log("AVG Rating driver 2: " + getDriverRating(2));
         //console.log(retrieve("users", "fname", 1));
         //newDriver("NormalManDan@aol.com", "abc123", "Dan", "Notmehehe");
 

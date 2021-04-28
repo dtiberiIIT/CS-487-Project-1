@@ -425,3 +425,32 @@ function newPaymentMethod(user_id, card_number, card_cvv, card_type) {
     }
     return res;
 }
+
+/*
+Returns a driver's average rating give his driver_id.
+This is done by checking each ride that the driver has completed and finding the avg rating.
+Returns -1 if failed.
+-Dan Tiberi
+*/
+function getDriverRating(id){
+    if(!typeof id == "number"){
+        console.log("Invlaid driver_id: "+ id);
+        return -1;
+    }
+    else{
+        res = -2; 
+        try{
+            res = alasql("SELECT AVG(user_rating) AS DriverRating FROM rides WHERE driver_id =" + id)[0].DriverRating;
+            //Round result to 2 decimal places.
+            res = (Math.round(res * 100) / 100).toFixed(2);
+        } catch (error) {
+            res = -1
+            console.log("Alasql Error: ", error);
+        }
+            if(res == null || res == undefined){
+            res = -1;
+            console.log("Undefined id");
+        }
+        return res;
+    }
+}
