@@ -18,6 +18,11 @@
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/tooplate-gymso-style.css">
 
+     <!-- ALASQL CDN -->
+     <script src="https://cdn.jsdelivr.net/npm/alasql@1.7.2/dist/alasql.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/0.3.2/js/sql.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
+
 </head>
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
@@ -61,12 +66,12 @@
     <div class="wrapper">
         <h2>Driver Login</h2>
         <p>Please fill in your credentials to login.</p>
-        <form >
+        <form id="loginForm">
 
 
             <div >
                 <label>Username</label>
-                <input type="text" name="username"class="form-control" placeholder="Your email id" required>
+                <input type="text" name="email"class="form-control" placeholder="Your email id" required>
 
             </div>
             <div class="form-group ">
@@ -75,7 +80,7 @@
 
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
+                <input type="submit" class="btn btn-primary" value="Login" onclick="driverLogin()">
 
             </div>
             <p>Don't have an account? <a href="DriverRegister.HTML">Sign up now</a>.</p>
@@ -165,6 +170,7 @@
          <script src="js/aos.js"></script>
          <script src="js/smoothscroll.js"></script>
          <script src="js/custom.js"></script>
-
+         <script src="js/crud.js"></script>    
+         <script src="js/accounts.js"></script>     
     </body>
     </html>
