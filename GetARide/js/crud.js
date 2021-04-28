@@ -298,7 +298,15 @@ Creates a new ride using given parameters.
 -Dan Tiberi
 */
 function newRide(passenger_id, driver_id, vehicle_id, fee, tax, origin, destination, start_time, end_time, user_rating, payment_card_id) {
-    alasql("INSERT INTO rides (passenger_id, driver_id, vehicle_id, fee, tax, origin, destination, start_time, end_time, user_rating, payment_card_id) VALUES (" + passenger_id+","+ driver_id+","+  vehicle_id+","+  fee+","+ tax + ",'" + origin +"','"+  destination+"',"+  start_time+","+  end_time+","+  user_rating+","+  payment_card_id+")");
+    res = -2;
+    try{
+        alasql("INSERT INTO rides (passenger_id, driver_id, vehicle_id, fee, tax, origin, destination, start_time, end_time, user_rating, payment_card_id) VALUES (" + passenger_id+","+ driver_id+","+  vehicle_id+","+  fee+","+ tax + ",'" + origin +"','"+  destination+"',"+  start_time+","+  end_time+","+  user_rating+","+  payment_card_id+")");
+        res = 1;
+    } catch (error) {
+        res = -1
+        console.log("Alasql Error: ", error);
+    }
+    return res;
 }
 
 /*
@@ -356,3 +364,63 @@ function setAllRidesStatus(status){
     }
 }
 
+/*
+Exists in place of a rateDriver function. Assigns a rating to a specified ride (id).
+Returns -1 if successful.
+-Dan Tiberi
+*/
+function rateRide(id, rating){
+    if(!typeof id == "number" || !typeof rating == "number"){
+        console.log("Invlaid ride_id or rating: "+ id + "," + rating);
+        return -1;
+    }
+    else{
+        res = -2; 
+        try{
+            alasql("UPDATE rides set user_rating = " + rating + " WHERE ride_id = " + id)
+            res = 1;
+        } catch (error) {
+            res = -1
+            console.log("Alasql Error: ", error);
+        }
+            if(res == null || res == undefined){
+            res = -1;
+            console.log("Undefined ride");
+        }
+        return res;
+    }
+}
+
+/*
+Creates a new vehicle given parameters.
+Returns 1 if successful.
+-Dan Tiberi
+*/
+function newVehicle(driver_id, lplate_num, model_year, vehicle_make, vehicle_model, passed_qa, pas_capacity, quality_rating) {
+    res = -2;
+    try{
+        alasql("INSERT INTO vehicles (driver_id, lplate_num, model_year, vehicle_make, vehicle_model, passed_qa, pas_capacity, quality_rating) VALUES (" + driver_id + ",'"+ lplate_num + "'," + model_year + ",'" + vehicle_make + "','" + vehicle_model + "'," + passed_qa + "," + pas_capacity + "," + quality_rating + ")");
+        res = 1;
+    } catch (error) {
+        res = -1
+        console.log("Alasql Error: ", error);
+    }
+    return res;
+}
+
+/*
+Creates a new payment method given parameters.
+Returns 1 if successful.
+-Dan Tiberi
+*/
+function newPaymentMethod(user_id, card_number, card_cvv, card_type) {
+    res = -2;
+    try{
+        alasql("INSERT INTO payment_info (user_id, card_number, card_cvv, card_type) VALUES (" + user_id + ",'" + card_number + "'," + card_cvv + ",'" + card_type + "')");
+        res = 1;
+    } catch (error) {
+        res = -1
+        console.log("Alasql Error: ", error);
+    }
+    return res;
+}
