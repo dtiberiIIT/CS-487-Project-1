@@ -3,8 +3,10 @@ console.log("hello");
 
 mapboxgl.accessToken = 
     'pk.eyJ1IjoiNDg3Z3JvdXAxIiwiYSI6ImNrbjg1MnU5bjB1bDEyeHA5anRvenkwaHUifQ.mk3hzTJa6-jD7mxD8xxDPQ';
-    navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy:true})
 
+function run() {
+    navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy:true})
+}
 function successLocation(position){
     console.log(position)
     setupMap([position.coords.longitude, position.coords.latitude])
@@ -27,17 +29,20 @@ function setupMap(center) {
     var directions = new MapboxDirections({
         accessToken: 'pk.eyJ1IjoiNDg3Z3JvdXAxIiwiYSI6ImNrbjg1MnU5bjB1bDEyeHA5anRvenkwaHUifQ.mk3hzTJa6-jD7mxD8xxDPQ',
         unit: 'metric',
-        profile: 'mapbox/cycling'
+        profile: 'mapbox/driving'
       });
       
       
     map.addControl(directions, 'top-left');
+
+    var form = document.getElementById("rideform");
+    var orig = form["orig"].value;
+    var dest = form["dest"].value;
+    console.log(orig); 
+    directions.setOrigin(orig);
+    directions.setDestination(dest);
+    console.log(directions.getOrigin.value);
+    console.log("oula");
 }
 
 
-
-function myfunction()
-{
-    window.open("/rider_settings/index.html");   
-    console.log("salam");
-}
