@@ -35,11 +35,55 @@ function setupMap(center) {
       
     map.addControl(directions, 'top-left');
 
+    var geocoder = new MapboxGeocoder({ accessToken: 'pk.eyJ1IjoiNDg3Z3JvdXAxIiwiYSI6ImNrbjg1MnU5bjB1bDEyeHA5anRvenkwaHUifQ.mk3hzTJa6-jD7mxD8xxDPQ', types: 'address',  mapboxgl: mapboxgl });
+
+
+
     var form = document.getElementById("rideform");
     var orig = form["orig"].value;
     var dest = form["dest"].value;
     directions.setOrigin(orig);
     directions.setDestination(dest);
+
+    const Http1 = new XMLHttpRequest();
+    const url1="https://api.mapbox.com/geocoding/v5/mapbox.places/"+orig+".json?types=address&access_token=pk.eyJ1IjoiNDg3Z3JvdXAxIiwiYSI6ImNrbjg1MnU5bjB1bDEyeHA5anRvenkwaHUifQ.mk3hzTJa6-jD7mxD8xxDPQ";
+    Http1.open("GET", url1);
+    Http1.send();
+    var ans1;
+    Http1.onreadystatechange = (e) => {
+       ans1 = JSON.parse(Http1.responseText);
+       orig_first=ans1.features[0].center[0].toString();
+       orig_sec=ans1.features[0].center[1].toString();
+   
+   
+       const Http2 = new XMLHttpRequest();
+       const url2="https://api.mapbox.com/geocoding/v5/mapbox.places/"+dest+".json?types=address&access_token=pk.eyJ1IjoiNDg3Z3JvdXAxIiwiYSI6ImNrbjg1MnU5bjB1bDEyeHA5anRvenkwaHUifQ.mk3hzTJa6-jD7mxD8xxDPQ";
+       Http2.open("GET", url2);
+       Http2.send();
+       var ans2;
+       Http2.onreadystatechange = (e) => {
+           ans2 = JSON.parse(Http2.responseText);
+           dest_first=ans2.features[0].center[0].toString();
+            dest_sec=ans2.features[0].center[1].toString();
+            const Http = new XMLHttpRequest();
+            const url="https://api.mapbox.com/directions/v5/mapbox/driving/"+orig_first+","+orig_sec+";"+dest_first+","+dest_sec+"?access_token=pk.eyJ1IjoiNDg3Z3JvdXAxIiwiYSI6ImNrbjg1MnU5bjB1bDEyeHA5anRvenkwaHUifQ.mk3hzTJa6-jD7mxD8xxDPQ";
+            Http.open("GET", url);
+            Http.send();
+
+            Http.onreadystatechange = (e) => {
+                var ans = JSON.parse(Http.responseText);
+                console.log(ans.routes[0].duration);
+                console.log(ans.routes[0].distance);
+                var price = ans.routes[0].distance / 1000;
+                var tax = price * 0.2;
+                console.log(tax);
+            }
+   }
+       
+}
+
+
+    
 }
 
 
