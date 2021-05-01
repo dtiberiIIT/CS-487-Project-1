@@ -38,11 +38,8 @@ function setupMap(center) {
     var form = document.getElementById("rideform");
     var orig = form["orig"].value;
     var dest = form["dest"].value;
-    console.log(orig); 
     directions.setOrigin(orig);
     directions.setDestination(dest);
-    console.log(directions.getOrigin.value);
-    console.log("oula");
 }
 
 
