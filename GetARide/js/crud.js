@@ -160,6 +160,32 @@ function getRide(id){
 }
 
 /*
+Returns ride data from the DB given a driver ID. The data is stored in a generic object as parameters. 
+If the driver does not exist or an invalid ID is given, it will return -1.
+-Dan Tiberi
+*/
+function getRides(id){
+    if(!typeof id == "number"){
+        console.log("Invlaid driver_id: ", id);
+        return -1;
+    }
+    else{
+        res = -2; //Should never reach this 
+        try{
+            res = Object.values(alasql("SELECT * FROM rides WHERE driver_id=" + id));
+        } catch (error) {
+            res = -1
+            console.log("Alasql Error: ", error);
+        }
+            if(res == null || res == undefined){
+            res = -1;
+            console.log("Undefined driver.");
+        }
+        return res;
+    }
+}
+
+/*
 Returns vehicle data from the DB given an ID. The data is stored in a generic object as parameters. 
 If the vehicle does not exist or an invalid ID is given, it will return -1.
 -Dan Tiberi

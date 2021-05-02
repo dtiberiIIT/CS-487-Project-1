@@ -14,6 +14,7 @@
      <link rel="stylesheet" href="css/bootstrap.min.css">
      <link rel="stylesheet" href="css/font-awesome.min.css">
      <link rel="stylesheet" href="css/aos.css">
+     <link rel="stylesheet" href="css/table.css">
 
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/tooplate-gymso-style.css">
@@ -21,6 +22,14 @@
      <!--  add your style sheets and other links here
      add java scripts links at the end of the file
      -->
+
+    <script src="js/crud.js"></script>
+    <script src="js/driver.js"></script>
+
+    <!-- ALASQL CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/alasql@1.7.2/dist/alasql.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/0.3.2/js/sql.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
 </head>
 
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
@@ -73,42 +82,17 @@
         <div class="container">
              <div class="row">
 
-                     <div class="col-lg-12 col-12 text-center">
+                <div class="col-lg-12 col-12 text-center">
 
 
-                         <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Your Driver Trip History</h2>
-                      </div>
+                    <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Your Driver Trip History</h2>
+                </div>
 
-                      <div class="col-lg-12 py-5 col-md-12 col-12">
-                          <table class="table table-bordered table-responsive schedule-table" data-aos="fade-up" data-aos-delay="300">
-
-                              <thead class="thead-light">
-                                  <th>ID</th>
-                                  <th>Date</th>
-                                  <th>Pickup</th>
-                                  <th>Destination</th>
-                                  <th>Duration</th>
-                                  <th>Price</th>
-                                  <th>Tip</th>
-                                  <th>Driver Rating</th>
-                              </thead>
-
-                              <tbody>
-
-                                    <tr>
-                                      <td><strong>1</strong></td>
-                                      <td><strong>4/14/2021</strong></td>
-                                      <td><strong>Main Street</strong></td>
-                                      <td><strong>1200 Wacky Way</strong></td>
-                                      <td><strong>20 min</strong></td>
-                                      <td><strong>$21.34</strong></td>
-                                      <td><strong>$0</strong></td>
-                                      <td><strong>0/5</strong></td>
-                                    </tr>
-
-                                  </tbody>
-                              </table>
-                          </div>
+                <div class="col-lg-12 py-5 col-md-12 col-12">
+                      <table id="ridesTable" data-aos="fade-up" data-aos-delay="400">
+                      </table>
+                      <script type = "text/javascript">load(); generateRidesTable(getRides(2))</script>
+                </div>
 
              </div>
         </div>
@@ -204,6 +188,6 @@
           <script src="js/aos.js"></script>
           <script src="js/smoothscroll.js"></script>
           <script src="js/custom.js"></script>
-
+         
      </body>
      </html>

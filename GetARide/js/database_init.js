@@ -38,9 +38,14 @@ function populate(tog){
 
         newUser("Dt@gmail.com", "abc123", "Bob", "Bobbyson", "1947-2-15");
 
+        newVehicle(2,"OutATime", 2015, "Toyota", "Prius", true, 3, 5);
+        newVehicle(2,"Got2GoFast", 2019, "Ford", "Fusion", true, 3, 5);
+        newVehicle(2,"2Fast4U", 2017, "Honda", "Civic", true, 3, 5);
+
         newRide(1,2,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
-        newRide(1,2,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,4,0);
-        newRide(1,2,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,2,0);
+        newRide(1,2,3,12.00, 0.75, "ABC 123", "XYZ 123", 1,1,4,0);
+        newRide(1,2,3,18.00, 0.75, "ABC 123", "XYZ 123", 1,1,2,0);
+        newRide(1,2,3,11.00, 0.75, "ABC 123", "XYZ 123", 1,1,2,0);
 
         newRide(1,1,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
         newRide(1,3,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
