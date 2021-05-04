@@ -70,4 +70,20 @@ function generateTable(table, data) {
         }
     }
 }
+
+
+function updateAvail()
+{
+    var id = getUserID(window.localStorage.getItem('rider_email'));
+    var form = document.getElementById("availform");
+    var status = form["a_status"].value;
+    var status_bool;
+    if (status == "CC1") {
+        status_bool=true;
+    }
+    if (status == "CC2") {
+        status_bool=false;
+    }
+    setDriverStatus(id, status_bool);
+}
   

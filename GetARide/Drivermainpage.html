@@ -18,6 +18,13 @@
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/tooplate-gymso-style.css">
 
+    <!-- ALASQL CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/alasql@1.7.2/dist/alasql.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/0.3.2/js/sql.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
+
+    <script src="js/crud.js"></script>
+
      <!--map style-->
        <meta name="viewport" content="width=device-width ,initial-scale=1.0" >
        <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
@@ -84,7 +91,7 @@
 
                       <div class="ml-auto col-lg-5 col-md-6 col-12">
 
-                          <form action="#" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
+                          <form id="availform" action="#" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
 
 
                             <center> <h4><b><center> Welcome Driver!</center></b></h4><p> Update your status and details to start the ride</p></center>
@@ -94,19 +101,18 @@
 
 
 
-                              <select name="status" id="status" class="form-control">
+                              <select name="a_status" id="status" class="form-control">
                                 <option value=""> Select Status</option>
-                  <option value="CC1" > Available</option>
-                  <option value="CC2">On Ride</option>
-                  <option value="CC3">Offline</option>
+                                <option value="CC1" > Available</option>
+                                <option value="CC2" > Not Available</option>
 
-              </select>
+                              </select>
 
 
                                             <label for="number"><b>Available Hours</b></label>
                                             <input type="text" placeholder="Enter Hours available"  class="form-control">
 
-                              <button type="submit" class="form-control" id="submit-button" name="submit">Update</button>
+                              <button type="button" class="form-control" id="submit-button" name="submit" onclick= "updateAvail()">Update</button>
                                   <button type="submit" class="form-control" id="submit-button" name="submit"> Cancel</button>
                           </form>
                       </div>
@@ -356,7 +362,7 @@
           <script src="js/aos.js"></script>
           <script src="js/smoothscroll.js"></script>
           <script src="js/custom.js"></script>
-            <script src="js/driver.js" defer ></script>
+          <script src="js/driver.js" defer ></script>
 
      </body>
      </html>
