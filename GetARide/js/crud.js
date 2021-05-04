@@ -67,9 +67,9 @@ function getUserID(email){
 }
 
 //Create new user using given params. -Dan Tiberi
-function newUser(email, password, fname, lname, dob, phone_number){
+function newUser(email, password, fname, lname, dob, phoneNumber){
     alasql("INSERT INTO users (email, password, fname, lname, dob, phone_number) \
-    VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname + "', " + dob + ", " + phone_number +")");
+    VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname + "', " + dob + ", '" + phoneNumber +"')");
 }
 
 /*
