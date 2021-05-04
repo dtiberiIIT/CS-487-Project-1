@@ -28,6 +28,7 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
 
      <script src="js/crud.js"></script>
+     <script src="js/accounts.js"></script>
 </head>
 
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
@@ -62,7 +63,7 @@
 
 
                <li class="nav-item">
-                   <a href="LOGIN.HTML" class="nav-link smoothScroll">Logout</a>
+                   <a href="login.html" class="nav-link smoothScroll">Logout</a>
                </li>
            </ul>
            </div>
@@ -104,32 +105,31 @@
                       <div class="ml-auto col-lg-5 col-md-6 col-12">
                           <h2 class="mb-4 " data-aos="fade-up" data-aos-delay="200"> Account Setting</h2>
 
-                          <form action="#" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
+                          <form id="riderSettings" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" onSubmit="return captureRiderProfileSettings();">
 
                             <label for="fname"><b><script>load(); document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).fname)</script></b></label>
-                              <input type="text" class="form-control" name="cf-name" placeholder="FirstName">
+                              <input type="text" class="form-control" name="rs_fname" placeholder="FirstName">
 
                               <label for="lname"><b><script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).lname)</script></b></label>
-                              <input type="email" class="form-control" name="cf-name" placeholder="LastName">
+                              <input type="email" class="form-control" name="rs_lname" placeholder="LastName">
 
                               <label for="email"><b><script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).email)</script></b></label>
-                              <input type="text" class="form-control" placeholder="Enter Email" name="cf-email" >
+                              <input type="text" class="form-control" placeholder="Enter Email" name="rs_email">
 
                               <label for="number"><b><script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).phone_number)</script></b></label>
-                              <input type="text" placeholder="Enter Phone Number"  class="form-control">
+                              <input type="text" placeholder="Enter Phone Number"  class="form-control" name="rs_phone">
 
                               <label for="Payment"><b><script>document.write(getPaymentInfo(window.localStorage.getItem('rider_email'), window.localStorage.getItem('rider_pass')).card_type + ": " + getPaymentInfo(window.localStorage.getItem('rider_email'), window.localStorage.getItem('rider_pass')).card_number)</script></b></label>
 
 
 
                               <select name="Payment method" id="Payment method" class="form-control">
-                  <option value="CC1" selected>Credit Card 1</option>
-                  <option value="CC2">Credit Card 2</option>
-                  <option value="CC3">Credit Card 3</option>
-                  <option value="CC4">Credit Card 4</option>
-              </select>
-                              <button type="submit" class="form-control" id="submit-button" name="submit"> Save Changes</button>
-                                  <button type="submit" class="form-control" id="submit-button" name="submit"> Cancel</button>
+                                <option value="CC1" selected>Credit Card 1</option>
+                                <option value="CC2">Credit Card 2</option>
+                                <option value="CC3">Credit Card 3</option>
+                                <option value="CC4">Credit Card 4</option>
+                              </select>
+                              <button type="submit" id="submit-button" name="submit"> Save Changes</button>
                           </form>
                       </div>
 

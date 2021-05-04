@@ -76,9 +76,9 @@ function newUser(email, password, fname, lname, dob, phoneNumber){
 Create new driver using given params. Defaults rating to 5.0. Routing number and last background check are set to NULL.
 -Dan Tiberi
 */
-function newDriver(email, password, fname, lname, phone_number){
+function newDriver(email, password, fname, lname, phoneNumber){
     alasql("INSERT INTO drivers (email, password, fname, lname, is_avail, avg_rating, num_trips, routing_number, last_background_check, phone_number)  \
-    VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname +"', false, 5.0, 0, NULL, NULL, " + phone_number +")");
+    VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname +"', false, 5.0, 0, NULL, NULL, '" + phoneNumber +"')");
 }
 
 /*

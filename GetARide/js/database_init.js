@@ -56,7 +56,7 @@ function populate(tog){
         //setRideStatus(2, "taken")
         //console.log(getRideStatus(2));
 
-        //console.log(getActiveRide(2))
+        //console.log(getActiveRide(2));
 
         //setDriverStatus(2, false)
 

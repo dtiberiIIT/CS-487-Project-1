@@ -92,5 +92,49 @@ Captures changes in settings from RiderProfile.html and stores them in the DB.
 -Dan Tiberi
 */
 function captureRiderProfileSettings(){
+    var form = document.getElementById('riderSettings');
+    var inputs = form.elements;   
+    var email = inputs["rs_email"].value;
+    var phone = inputs["rs_phone"].value;
+    var fname = inputs["rs_fname"].value;
+    var lname = inputs["rs_lname"].value;
 
+    let id = getUserID(window.localStorage.getItem('rider_email'))
+    email = email.toLowerCase();
+    let user = getUser(id);
+
+    if(user != -1 && getUser(id).password == window.localStorage.getItem('rider_pass')) {//If user exists with correct password
+
+        if(email.length!=0 && String(email).includes("@") && String(email).includes(".")){
+            set("users", "email", email, id);
+            window.localStorage.setItem('rider_email', email);
+        }
+
+        if(phone.length!=0){
+            set("users", "phone_number", phone, id);
+
+        }
+        
+        if(fname.length!=0){
+            set("users", "fname", fname, id);
+        }
+
+        if(lname.length!=0){
+            set("users", "lname", lname, id);
+        }
+        
+        window.open("RiderMainPage.html","_self");
+        return false;
+    }
+    else {
+        alert("Unauthorized Access");
+    }
+}
+
+/*
+Generates alert to inform user of invalid input. Meant for general purpose.
+-Dan Tiberi
+*/
+function alertInvalid(s){
+    alert("Invalid Input: " + s);
 }
