@@ -23,6 +23,8 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/0.3.2/js/sql.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
 
+     <script>load();</script>
+
 </head>
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
@@ -276,7 +278,8 @@
         var fname = inputs["fname"].value;
         var lname = inputs["lname"].value;
         var pwd = inputs["pswi"].value;
-        newUser(email,pwd,fname,lname);
+        var pnum = inputs["pnum"].value;
+        newUser(email,pwd,fname,lname,pnum);
         window.open("login.html");
      }</script>
 
