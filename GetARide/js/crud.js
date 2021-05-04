@@ -3,8 +3,8 @@ Creates dummy user for testing.
 -Dan Tiberi
 */
 function addDummyUser(){
-    alasql("INSERT INTO users (email, password, fname, lname, dob) \
-    VALUES ('dtiberi@hawk.iit.edu', 'abc123', 'Dan', 'Tiberi', 1975-04-23)");
+    alasql("INSERT INTO users (email, password, fname, lname, dob, phone_number) \
+    VALUES ('dtiberi@hawk.iit.edu', 'abc123', 'Dan', 'Tiberi', 1975-04-23, '555-555-5555')");
 }
 
 /*
@@ -14,8 +14,8 @@ isAvail, boolean, will denote if the driver will be entered as available.
 */
 function addDummyDriver(isAvail){
     alasql("INSERT INTO drivers \
-    (email, password, fname, lname, is_avail, avg_rating, num_trips, routing_number, last_background_check) \
-    VALUES ('aveillon@hawk.iit.edu', 'abc123' , 'Ange', 'Veillon', " + isAvail + " , 4.99, 3425, 'BanksAreFriendsNotFood', 2021-04-15)");
+    (email, password, fname, lname, is_avail, avg_rating, num_trips, routing_number, last_background_check, phone_number) \
+    VALUES ('aveillon@hawk.iit.edu', 'abc123' , 'Ange', 'Veillon', " + isAvail + " , 4.99, 3425, 'BanksAreFriendsNotFood', 2021-04-15, '555-555-5555')");
 }
 
 /*
@@ -67,18 +67,18 @@ function getUserID(email){
 }
 
 //Create new user using given params. -Dan Tiberi
-function newUser(email, password, fname, lname, dob){
-    alasql("INSERT INTO users (email, password, fname, lname, dob) \
-    VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname + "', " + dob + ")");
+function newUser(email, password, fname, lname, dob, phone_number){
+    alasql("INSERT INTO users (email, password, fname, lname, dob, phone_number) \
+    VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname + "', " + dob + ", " + phone_number +")");
 }
 
 /*
 Create new driver using given params. Defaults rating to 5.0. Routing number and last background check are set to NULL.
 -Dan Tiberi
 */
-function newDriver(email, password, fname, lname){
-    alasql("INSERT INTO drivers (email, password, fname, lname, is_avail, avg_rating, num_trips, routing_number, last_background_check)  \
-    VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname +"', false, 5.0, 0, NULL, NULL)");
+function newDriver(email, password, fname, lname, phone_number){
+    alasql("INSERT INTO drivers (email, password, fname, lname, is_avail, avg_rating, num_trips, routing_number, last_background_check, phone_number)  \
+    VALUES ('" + email + "', '" + password + "', '" + fname + "', '" + lname +"', false, 5.0, 0, NULL, NULL, " + phone_number +")");
 }
 
 /*
@@ -349,13 +349,38 @@ function load() {
 }
 
 /*
+Sets driver status given driver_id.
+Returns -1 if failed, 1 if successful
+-Dan Tiberi
+*/
+function setDriverStatus(driver_id, status) {
+    if(typeof driver_id != "number" ) {
+        console.log("Invalid driver_id: ", id);
+        return -1;
+    }
+    else if(typeof status != "boolean" ) {
+        console.log("Invalid status: ", id);
+        return -1;
+    }
+    else {
+        try{
+            alasql("UPDATE drivers SET is_avail = " + status + " WHERE driver_id=" + driver_id);
+            return 1;
+        } catch (error) {
+            console.log("Alasql Error: ", error);
+            return -1;
+        }
+    }
+}
+
+/*
 Creates a new ride using given parameters.
 -Dan Tiberi
 */
 function newRide(passenger_id, driver_id, vehicle_id, fee, tax, origin, destination, start_time, end_time, user_rating, payment_card_id) {
     res = -2;
     try{
-        alasql("INSERT INTO rides (passenger_id, driver_id, vehicle_id, fee, tax, origin, destination, start_time, end_time, user_rating, payment_card_id) VALUES (" + passenger_id+","+ driver_id+","+  vehicle_id+","+  fee+","+ tax + ",'" + origin +"','"+  destination+"',"+  start_time+","+  end_time+","+  user_rating+","+  payment_card_id+")");
+        alasql("INSERT INTO rides (passenger_id, driver_id, vehicle_id, fee, tax, origin, destination, start_time, duration, user_rating, payment_card_id, status) VALUES (" + passenger_id+","+ driver_id+","+  vehicle_id+","+  fee+","+ tax + ",'" + origin +"','"+  destination+"',"+  start_time+","+  end_time+","+  user_rating+","+  payment_card_id+", 'requested')");
         res = 1;
     } catch (error) {
         res = -1
@@ -365,7 +390,7 @@ function newRide(passenger_id, driver_id, vehicle_id, fee, tax, origin, destinat
 }
 
 /*
-Sets ride to given status. Returns 1 if successful
+Sets ride to given status. Status is an enum of request, taken, and complete. Returns 1 if successful, else -1
 -Dan Tiberi
 */
 function setRideStatus(id, status) {
@@ -373,15 +398,39 @@ function setRideStatus(id, status) {
         console.log("Invlaid ride_id: ", id);
         return -1;
     }
-    else if(!typeof status == "boolean"){
+    else if(!typeof status == "string"){
         console.log("Invlaid ride status: " + status);
         return -1;
     }
     else{
         res = -2; 
         try{
-            alasql("UPDATE rides set status = " + status + " WHERE ride_id = " + id)
+            alasql("UPDATE rides set status = '" + status + "' WHERE ride_id = " + id)
             res = 1;
+        } catch (error) {
+            res = -1
+            console.log("Alasql Error: ", error);
+        }
+            if(res == null || res == undefined){
+            res = -1;
+            console.log("Undefined ride");
+        }
+        return res;
+    }
+}
+
+/*
+Sets ride to given status. Status is an enum of request, taken, and complete. Returns 1 if successful, else -1
+-Dan Tiberi
+*/
+function getRideStatus(id) {
+    if(!typeof id == "number"){
+        console.log("Invlaid ride_id: ", id);
+        return -1;
+    }
+    else{
+        try{
+            res = alasql("SELECT status FROM rides WHERE ride_id = " + id)[0].status
         } catch (error) {
             res = -1
             console.log("Alasql Error: ", error);
@@ -399,14 +448,14 @@ Set all rides to a given status. Returns 1 if successful.
 -Dan Tiberi
 */
 function setAllRidesStatus(status){
-    if(!typeof status == "boolean"){
+    if(!typeof status == "string"){
         console.log("Invlaid ride status: " + status);
         return -1;
     }
     else{
         res = -2; 
         try{
-            alasql("UPDATE rides set status = " + status)
+            alasql("UPDATE rides set status = '" + status + "'")
             res = 1;
         } catch (error) {
             res = -1
@@ -422,7 +471,7 @@ function setAllRidesStatus(status){
 
 /*
 Exists in place of a rateDriver function. Assigns a rating to a specified ride (id).
-Returns -1 if successful.
+Returns -1 if unsuccessful.
 -Dan Tiberi
 */
 function rateRide(id, rating){
@@ -484,7 +533,7 @@ function newPaymentMethod(user_id, card_number, card_cvv, card_type) {
 /*
 Returns a driver's average rating give his driver_id.
 This is done by checking each ride that the driver has completed and finding the avg rating.
-Returns -1 if failed.
+Returns -1 if failed, else 1.
 -Dan Tiberi
 */
 function getDriverRating(id){
@@ -505,6 +554,28 @@ function getDriverRating(id){
             if(res == null || res == undefined){
             res = -1;
             console.log("Undefined id");
+        }
+        return res;
+    }
+}
+
+/*
+Gets the currently active drive pertaining to a specified driver_id.
+Returns -1 if failed.
+-Dan Tiberi
+*/
+function getActiveRide(driver_id){
+    if(!typeof driver_id == "number"){
+        console.log("Invlaid driver_id: "+ driver_id);
+        return -1;
+    }
+    else{
+        res = -2; 
+        try{
+            res = alasql("SELECT * FROM rides WHERE driver_id =" + driver_id + " AND status='taken'")[0];
+        } catch (error) {
+            res = -1
+            console.log("Alasql Error: ", error);
         }
         return res;
     }

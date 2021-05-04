@@ -115,7 +115,7 @@
                               <label for="email"><b><script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).email)</script></b></label>
                               <input type="text" class="form-control" placeholder="Enter Email" name="cf-email" >
 
-                              <label for="number"><b>TODO-Add rider phone number to db</b></label>
+                              <label for="number"><b><script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).phone_number)</script></b></label>
                               <input type="text" placeholder="Enter Phone Number"  class="form-control">
 
                               <label for="Payment"><b><script>document.write(getPaymentInfo(window.localStorage.getItem('rider_email'), window.localStorage.getItem('rider_pass')).card_type + ": " + getPaymentInfo(window.localStorage.getItem('rider_email'), window.localStorage.getItem('rider_pass')).card_number)</script></b></label>
