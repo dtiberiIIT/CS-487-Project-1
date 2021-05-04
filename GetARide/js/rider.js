@@ -53,6 +53,7 @@ function setupMap(center) {
     var form = document.getElementById("rideform");
     var orig = form["orig"].value;
     var dest = form["dest"].value;
+    var pu_time = form["pickup_time"].value;
     directions.setOrigin(orig);
     directions.setDestination(dest);
     var curloc= form["ownloc"];
@@ -82,6 +83,7 @@ function setupMap(center) {
                 var price = ans.routes[0].distance / 1000;
                 var tax = price * 0.2;
                 console.log(tax);
+                newRide(getUserID(window.localStorage.getItem('rider_email')),'-1','-1',price,tax,orig,dest,pu_time,ans.routes[0].duration,'-1','-1');
             }
         }
         }
@@ -120,6 +122,7 @@ function setupMap(center) {
                     var price = ans.routes[0].distance / 1000;
                     var tax = price * 0.2;
                     console.log(tax);
+                    newRide(getUserID(window.localStorage.getItem('rider_email')),'-1','-1',price,tax,orig,dest,pu_time,ans.routes[0].duration,'-1','-1');
                 }
          }
            
