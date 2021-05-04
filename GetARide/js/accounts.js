@@ -23,6 +23,7 @@ function riderLogin(){
         //Check credentials.
         var inputs = form.elements;   
         var email = inputs["email"].value;
+        email = email.toLowerCase();
         var pass = inputs["password"].value;
 
         let user = getUser(getUserID(email));
@@ -67,6 +68,8 @@ function driverLogin(){
         var email = inputs["email"].value;
         var pass = inputs["password"].value;
 
+        email = email.toLowerCase();
+
         let user = getDriver(getDriverID(email));
         if(user != -1 && getDriver(getDriverID(email)).password == pass) {//If user exists with correct password
             //User exists, store info into local storage.
@@ -82,4 +85,12 @@ function driverLogin(){
             alert("User does not exist or the password is incorrect.");
         }
     }
+}
+
+/*
+Captures changes in settings from RiderProfile.html and stores them in the DB.
+-Dan Tiberi
+*/
+function captureRiderProfileSettings(){
+
 }
