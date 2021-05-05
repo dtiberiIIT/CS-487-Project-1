@@ -61,6 +61,7 @@ function setupMap(center) {
         navigator.geolocation.getCurrentPosition(function(position) {
         orig_first=position.coords.longitude.toString();
         orig_sec=position.coords.latitude.toString();
+        orig=[orig_first,orig_sec];
         directions.setOrigin([orig_first,orig_sec]);
         const Http2 = new XMLHttpRequest();
         const url2="https://api.mapbox.com/geocoding/v5/mapbox.places/"+dest+".json?types=address&access_token=pk.eyJ1IjoiNDg3Z3JvdXAxIiwiYSI6ImNrbjg1MnU5bjB1bDEyeHA5anRvenkwaHUifQ.mk3hzTJa6-jD7mxD8xxDPQ";
@@ -83,7 +84,7 @@ function setupMap(center) {
                 var price = ans.routes[0].distance / 1000;
                 var tax = price * 0.2;
                 console.log(tax);
-                newRide(getUserID(window.localStorage.getItem('rider_email')),'-1','-1',price,tax,orig,dest,pu_time,ans.routes[0].duration,'-1','-1');
+                newRide(getUserID(window.localStorage.getItem('rider_email')),'-1','-1',price,tax,orig,dest,1,ans.routes[0].duration,'-1','-1');
             }
         }
         }
@@ -122,7 +123,7 @@ function setupMap(center) {
                     var price = ans.routes[0].distance / 1000;
                     var tax = price * 0.2;
                     console.log(tax);
-                    newRide(getUserID(window.localStorage.getItem('rider_email')),'-1','-1',price,tax,orig,dest,pu_time,ans.routes[0].duration,'-1','-1');
+                    newRide(getUserID(window.localStorage.getItem('rider_email')),'-1','-1',price,tax,orig,dest,1,ans.routes[0].duration,'-1','-1');
                 }
          }
            

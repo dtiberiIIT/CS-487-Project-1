@@ -327,7 +327,11 @@ function setupMap(center) {
       
       
     map.addControl(directions, 'top-left');
-
+    
+    var id = getDriverID(window.localStorage.getItem('driver_email'));
+    console.log("erf",id);
+    var dest = getActiveRide(id).destination;
+    var orig = getActiveRide(id).origin;
     directions.setOrigin(center);
     directions.addWaypoint(orig);
     directions.setDestination(dest);
