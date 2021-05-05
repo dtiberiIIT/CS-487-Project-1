@@ -190,7 +190,11 @@ function generateAddressTableHead(table, data) {
         for (let i = 0; i < words.length; i++) {
             words[i] = words[i][0].toUpperCase() + words[i].substr(1);
         }
-        text.textContent = words.join(" ");
+        s = words.join(" ");
+        if(s=="Adr Id"){
+            s = "Address ID";
+        }
+        text.textContent = s;
 
         th.appendChild(text);
         row.appendChild(th);
@@ -219,6 +223,8 @@ function populateAddressesTable(table, data) {
         //Code for button.
         button.addEventListener("click", function() {
             console.log(element); //Gives ride display object.
+            
+            document.getElementById("addressField").value = element.address;
         });
 
         cell.appendChild(button);
