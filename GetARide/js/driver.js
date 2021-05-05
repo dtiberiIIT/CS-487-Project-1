@@ -342,14 +342,23 @@ function setupMap(center) {
       
       
     map.addControl(directions, 'top-left');
+
+    var geocoder = new MapboxGeocoder({ accessToken: 'pk.eyJ1IjoiNDg3Z3JvdXAxIiwiYSI6ImNrbjg1MnU5bjB1bDEyeHA5anRvenkwaHUifQ.mk3hzTJa6-jD7mxD8xxDPQ', types: 'address',  mapboxgl: mapboxgl });
     
     var id = getDriverID(window.localStorage.getItem('driver_email'));
-    console.log("erf",id);
     var dest = getActiveRide(id).destination;
     var orig = getActiveRide(id).origin;
     directions.setOrigin(center);
-    directions.addWaypoint(orig);
-    directions.setDestination(dest);
+    directions.setDestination(orig);
+    
 
-    }
+    var button = document.getElementById("button_route");
+    button.addEventListener("click", function() {
+
+    directions.setOrigin(orig);
+    directions.setDestination(dest);  
+        
+        
+    });
+}
 //End of map related

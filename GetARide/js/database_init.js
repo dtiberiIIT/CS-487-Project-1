@@ -38,8 +38,8 @@ function populate(tog){
         newVehicle(2,"Got2GoFast", 2019, "Ford", "Fusion", true, 3, 5);
         newVehicle(2,"2Fast4U", 2017, "Honda", "Civic", true, 3, 5);
 
-        newRide(1,-1,3,15.00, 0.75, "ABC 123", "XYZ 123", 1,1,5,0);
-        newRide(1,-1,3,12.00, 0.75, "ABC 123", "XYZ 123", 1,1,4,0);
+        newRide(1,-1,3,15.00, 0.75, "empire state building", "chrysler building", 1,1,5,0);
+        newRide(1,-1,3,12.00, 0.75, "8 rue alcide delapierre", "15 rue theodore maillart", 1,1,4,0);
         newRide(1,-1,3,18.00, 0.75, "ABC 123", "XYZ 123", 1,1,2,0);
         newRide(1,-1,3,11.00, 0.75, "ABC 123", "XYZ 123", 1,1,2,0);
 
