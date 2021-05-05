@@ -36,7 +36,7 @@ function riderLogin(){
             //console.log(window.localStorage.getItem('rider_email'), window.localStorage.getItem('rider_pass'));
 
             //TODO: PROCEED TO NEXT PAGE
-            window.open("RiderMainPage.html");
+            window.open("RiderMainPage.html","_self");
         }
         else {
             alert("User does not exist or the password is incorrect.");
@@ -79,7 +79,7 @@ function DriverLogin(){
             //console.log(window.localStorage.getItem('driver_email'), window.localStorage.getItem('driver_pass'));
 
             //TODO: PROCEED TO NEXT PAGE
-            window.open("DriverMainPage.html");
+            window.open("DriverMainPage.html","_self");
         }
         else {
             alert("User does not exist or the password is incorrect.");
