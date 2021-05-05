@@ -107,19 +107,19 @@
 
                           <form id="riderSettings" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" onSubmit="return captureRiderProfileSettings();">
 
-                            <label for="fname"><b><script>load(); document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).fname)</script></b></label>
+                            <label for="fname"><b>FirstName:  <script>load(); document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).fname)</script></b></label>
                               <input type="text" class="form-control" name="rs_fname" placeholder="FirstName">
 
-                              <label for="lname"><b><script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).lname)</script></b></label>
-                              <input type="email" class="form-control" name="rs_lname" placeholder="LastName">
+                              <label for="lname"><b>LastName:  <script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).lname)</script></b></label>
+                              <input type="text" class="form-control" name="rs_lname" placeholder="LastName">
 
-                              <label for="email"><b><script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).email)</script></b></label>
-                              <input type="text" class="form-control" placeholder="Enter Email" name="rs_email">
+                              <label for="email"><b>Email:  <script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).email)</script></b></label>
+                              <input type="email" class="form-control" placeholder="Enter Email" name="rs_email">
 
-                              <label for="number"><b><script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).phone_number)</script></b></label>
+                              <label for="number"><b>PhoneNumber:  <script>document.write(getUser(getUserID(window.localStorage.getItem('rider_email'))).phone_number)</script></b></label>
                               <input type="text" placeholder="Enter Phone Number"  class="form-control" name="rs_phone">
 
-                              <label for="Payment"><b><script>document.write(getPaymentInfo(window.localStorage.getItem('rider_email'), window.localStorage.getItem('rider_pass')).card_type + ": " + getPaymentInfo(window.localStorage.getItem('rider_email'), window.localStorage.getItem('rider_pass')).card_number)</script></b></label>
+                              <label for="Payment"><b>Payment:  <script>document.write(getPaymentInfo(window.localStorage.getItem('rider_email'), window.localStorage.getItem('rider_pass')).card_type + ": " + getPaymentInfo(window.localStorage.getItem('rider_email'), window.localStorage.getItem('rider_pass')).card_number)</script></b></label>
 
 
 
