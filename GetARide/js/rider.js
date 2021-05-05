@@ -69,6 +69,7 @@ function setupMap(center) {
         Http2.send();
         var ans2;
         Http2.onreadystatechange = (e) => {
+            if (Http2.readyState === 4) {
             ans2 = JSON.parse(Http2.responseText);
             dest_first=ans2.features[0].center[0].toString();
             dest_sec=ans2.features[0].center[1].toString();
@@ -78,6 +79,7 @@ function setupMap(center) {
             Http.send();
     
             Http.onreadystatechange = (e) => {
+                if (Http.readyState === 4) {
                 var ans = JSON.parse(Http.responseText);
                 console.log(ans.routes[0].duration);
                 console.log(ans.routes[0].distance);
@@ -88,6 +90,8 @@ function setupMap(center) {
             }
         }
         }
+        }
+    }
         ,errorLocation2, { enableHighAccuracy:true});       
     }
     else{
@@ -97,6 +101,7 @@ function setupMap(center) {
         Http1.send();
         var ans1;
         Http1.onreadystatechange = (e) => {
+        if (Http1.readyState === 4) {
            ans1 = JSON.parse(Http1.responseText);
            orig_first=ans1.features[0].center[0].toString();
            orig_sec=ans1.features[0].center[1].toString();
@@ -108,6 +113,7 @@ function setupMap(center) {
            Http2.send();
            var ans2;
            Http2.onreadystatechange = (e) => {
+            if (Http2.readyState === 4) {
                ans2 = JSON.parse(Http2.responseText);
                dest_first=ans2.features[0].center[0].toString();
                 dest_sec=ans2.features[0].center[1].toString();
@@ -117,18 +123,21 @@ function setupMap(center) {
                 Http.send();
     
                 Http.onreadystatechange = (e) => {
-                    var ans = JSON.parse(Http.responseText);
-                    console.log(ans.routes[0].duration);
-                    console.log(ans.routes[0].distance);
-                    var price = ans.routes[0].distance / 1000;
-                    var tax = price * 0.2;
-                    console.log(tax);
-                    newRide(getUserID(window.localStorage.getItem('rider_email')),'-1','-1',price,tax,orig,dest,1,ans.routes[0].duration,'-1','-1');
+                    if (Http.readyState === 4) {
+                        var ans = JSON.parse(Http.responseText);
+                        console.log(ans.routes[0].duration);
+                        console.log(ans.routes[0].distance);
+                        var price = ans.routes[0].distance / 1000;
+                        var tax = price * 0.2;
+                        console.log(tax);
+                        newRide(getUserID(window.localStorage.getItem('rider_email')),'-1','-1',price,tax,orig,dest,1,ans.routes[0].duration,'-1','-1');
+                    }
                 }
          }
-           
+        }
         }
     }
+}
 
 
 
