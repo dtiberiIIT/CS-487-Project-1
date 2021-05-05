@@ -216,7 +216,7 @@ function populateRequestedRidesTable(table, data) {
 */
 function updateAvail()
 {
-    var id = getUserID(window.localStorage.getItem('rider_email'));
+    var id = getUserID(window.localStorage.getItem('driver_email'));
     var form = document.getElementById("availform");
     var status = form["a_status"].value;
     var status_bool;
@@ -279,4 +279,54 @@ function populateActiveRidesTable(table, data) {
         cell.appendChild(button);
 
     }
+    //displayRoute();
 }
+
+/* 
+map related 
+"it displays the active route in the map for the driver"
+-Ange Veillon
+*/
+
+
+function displayRoute() {
+    var id = getDriverID(window.localStorage.getItem('driver_email'));
+    var dest = getActiveRide(id).destination;
+    var orig = getActiveRide(id).origin;
+    navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy:true})
+}
+function successLocation(position){
+    console.log(position)
+    setupMap([position.coords.longitude, position.coords.latitude])
+    long = position.coords.longitude;
+    lat = position.coords.latitude;
+}   
+function errorLocation(){
+    setupMap([-87.62,41.88])
+}
+
+function setupMap(center) {
+    const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: center,
+        zoom: 14
+    })
+
+    const nav = new mapboxgl.NavigationControl();
+    map.addControl(nav);
+
+    var directions = new MapboxDirections({
+        accessToken: 'pk.eyJ1IjoiNDg3Z3JvdXAxIiwiYSI6ImNrbjg1MnU5bjB1bDEyeHA5anRvenkwaHUifQ.mk3hzTJa6-jD7mxD8xxDPQ',
+        unit: 'metric',
+        profile: 'mapbox/driving'
+      });
+      
+      
+    map.addControl(directions, 'top-left');
+
+    directions.setOrigin(center);
+    directions.addWaypoint(orig);
+    directions.setDestination(dest);
+
+    }
