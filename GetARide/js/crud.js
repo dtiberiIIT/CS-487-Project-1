@@ -733,6 +733,10 @@ function removeAddress(){
     return res;
 }
 
+/*
+Get an address id using a given address.
+-Dan Tiberi
+*/
 function getAddressId(address){
     var res = -1;
     try{
