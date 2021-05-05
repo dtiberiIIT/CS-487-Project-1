@@ -36,7 +36,7 @@ function riderLogin(){
             //console.log(window.localStorage.getItem('rider_email'), window.localStorage.getItem('rider_pass'));
 
             //TODO: PROCEED TO NEXT PAGE
-            window.open("RiderMainPage.html","_self");
+            window.open("RiderMainPage.html");
         }
         else {
             alert("User does not exist or the password is incorrect.");
@@ -70,8 +70,8 @@ function DriverLogin(){
 
         email = email.toLowerCase();
 
-        let user = getDriver(getDriverID(email));
-        if(user != -1 && getDriver(getDriverID(email)).password == pass) {//If user exists with correct password
+        let driver = getDriver(getDriverID(email));
+        if(driver != -1 && getDriver(getDriverID(email)).password == pass) {//If driver exists with correct password
             //User exists, store info into local storage.
             window.localStorage.setItem('driver_email', driver.email);
             window.localStorage.setItem('driver_pass', driver.password);
@@ -79,7 +79,8 @@ function DriverLogin(){
             //console.log(window.localStorage.getItem('driver_email'), window.localStorage.getItem('driver_pass'));
 
             //TODO: PROCEED TO NEXT PAGE
-            window.open("DriverMainPage.html","_self");
+            window.open("DriverMainPage.html");
+            return false;
         }
         else {
             alert("User does not exist or the password is incorrect.");
@@ -123,7 +124,7 @@ function captureRiderProfileSettings(){
             set("users", "lname", lname, id);
         }
         
-        window.open("RiderMainPage.html","_self");
+        window.open("RiderMainPage.html");
         return false;
     }
     else {
@@ -133,6 +134,7 @@ function captureRiderProfileSettings(){
 
 /*
 Captures changes in settings from Driverprofile.html and stores them in the DB.
+-Kusuma
 */
 function captureDriverProfileSettings(){
     var form = document.getElementById('DriverSettings');
@@ -146,11 +148,11 @@ function captureDriverProfileSettings(){
     email = email.toLowerCase();
     let user = getDriver(id);
 
-    if(user != -1 && getDriver(id).password == window.localStorage.getItem('driver_pass')) {//If user exists with correct password
+    if(user != -1 && getDriver(id).password == window.localStorage.getItem('driver_pass')) {//If driver exists with correct password
 
         if(email.length!=0 && String(email).includes("@") && String(email).includes(".")){
             set("drivers", "email", email, id);
-            window.localStorage.setItem('rider_email', email);
+            window.localStorage.setItem('driver_email', email);
         }
 
         if(phone.length!=0){
@@ -166,7 +168,7 @@ function captureDriverProfileSettings(){
             set("drivers", "lname", lname, id);
         }
         
-        window.open("Drivermainpage.html","_self");
+        window.open("DriverMainPage.html","_self");
         return false;
     }
     else {
