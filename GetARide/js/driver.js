@@ -198,6 +198,9 @@ function populateRequestedRidesTable(table, data) {
                 document.getElementById("pendingRidesTable").innerHTML = "";
                 generateActiveRidesTable(); 
                 generateRequestedRidesTable();   
+                var id = getDriverID(window.localStorage.getItem('driver_email'));
+                console.log(id);
+                set("rides", "driver_id", id, element.ride_id);
             }        
             else{
                 alert("Only 1 Active Ride Allowed");
@@ -274,8 +277,7 @@ function populateActiveRidesTable(table, data) {
             document.getElementById("pendingRidesTable").innerHTML = "";           
             generateRequestedRidesTable();   
             
-            var id = getDriverID(window.localStorage.getItem('driver_email'));
-            set("rides", "driver_id", id, element.ride_id);
+            
         });
 
         cell.appendChild(button);
@@ -327,13 +329,22 @@ function setupMap(center) {
       
       
     map.addControl(directions, 'top-left');
+
+    var geocoder = new MapboxGeocoder({ accessToken: 'pk.eyJ1IjoiNDg3Z3JvdXAxIiwiYSI6ImNrbjg1MnU5bjB1bDEyeHA5anRvenkwaHUifQ.mk3hzTJa6-jD7mxD8xxDPQ', types: 'address',  mapboxgl: mapboxgl });
     
     var id = getDriverID(window.localStorage.getItem('driver_email'));
-    console.log("erf",id);
     var dest = getActiveRide(id).destination;
     var orig = getActiveRide(id).origin;
     directions.setOrigin(center);
-    directions.addWaypoint(orig);
-    directions.setDestination(dest);
+    directions.setDestination(orig);
+    
 
-    }
+    var button = document.getElementById("button_route");
+    button.addEventListener("click", function() {
+
+    directions.setOrigin(orig);
+    directions.setDestination(dest);  
+        
+        
+    });
+}
