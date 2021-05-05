@@ -51,7 +51,7 @@ If login is successful, the email and password will be entered in localStorage a
 TODO: Proceed to next page in app.
 -Dan Tiberi
 */
-function driverLogin(){
+function DriverLogin(){
     var form = document.getElementById('loginForm');
 
     //Check if required fields are filled
@@ -79,7 +79,7 @@ function driverLogin(){
             //console.log(window.localStorage.getItem('driver_email'), window.localStorage.getItem('driver_pass'));
 
             //TODO: PROCEED TO NEXT PAGE
-            window.open("Drivermainpage.html");
+            window.open("DriverMainPage.html");
         }
         else {
             alert("User does not exist or the password is incorrect.");
