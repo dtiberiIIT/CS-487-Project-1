@@ -190,7 +190,7 @@ Returns all rides with the given status
 If the driver does not exist or an invalid ID is given, it will return -1.
 -Dan Tiberi
 */
-function getRides(status){
+function getRidesThatAre(status){
     if(!typeof status == "string"){
         console.log("Invlaid status: ", status);
         return -1;
@@ -199,6 +199,48 @@ function getRides(status){
         res = -2; //Should never reach this 
         try{
             res = Object.values(alasql("SELECT * FROM rides WHERE status='" + status + "'"));
+        } catch (error) {
+            res = -1
+            console.log("Alasql Error: ", error);
+        }
+        return res;
+    }
+}
+
+/*
+Returns all rides
+Returns -1 if failed.
+-Dan Tiberi
+*/
+function getAllRides(){
+    res = -1; //Should never reach this 
+    try{
+        res = Object.values(alasql("SELECT * FROM rides"));
+    } catch (error) {
+        res = -1
+        console.log("Alasql Error: ", error);
+    }
+    return res;
+}
+
+/*
+Returns all rides with the given status belonging to a driver_id
+If the driver does not exist or an invalid ID is given, it will return -1.
+-Dan Tiberi
+*/
+function getRides(status, driver_id){
+    if(!typeof status == "string"){
+        console.log("Invlaid status: ", status);
+        return -1;
+    }
+    else if(!typeof driver_id == "number"){
+        console.log("Invlaid driver_id: ", driver_id);
+        return -1;
+    }
+    else{
+        res = -2; //Should never reach this 
+        try{
+            res = Object.values(alasql("SELECT * FROM rides WHERE status='" + status + "' AND driver_id=" + driver_id));
         } catch (error) {
             res = -1
             console.log("Alasql Error: ", error);
@@ -592,7 +634,7 @@ function getDriverRating(id){
     else{
         res = -2; 
         try{
-            res = alasql("SELECT AVG(user_rating) AS DriverRating FROM rides WHERE driver_id =" + id)[0].DriverRating;
+            res = alasql("SELECT AVG(user_rating) AS DriverRating FROM rides WHERE driver_id =" + id+" AND status='complete'")[0].DriverRating;
             //Round result to 2 decimal places.
             res = (Math.round(res * 100) / 100).toFixed(2);
         } catch (error) {

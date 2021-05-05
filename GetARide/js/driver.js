@@ -10,13 +10,14 @@ https://www.valentinog.com/blog/html-table/
 */
 
 /*
-Given a set of ride objects, generate a table
+Given table of past rides.
 -Dan Tiberi
 */
-function generateRidesTable(rides){
+function generateRideHistoryTable(driver_id){
+    let rides = getRides("complete", driver_id);
     let table = document.getElementById("ridesTable");
     let data = Object.keys(rides[0]);
-    generateTableHead(table, data, null);
+    generateTableHead(table, data, "history");
     generateTable(table, rides);
 }
 
@@ -25,7 +26,7 @@ Generates table of requested rides.
 -Dan Tiberi
 */
 function generateRequestedRidesTable(){
-    let rides = getRides("requested");
+    let rides = getRidesThatAre("requested");
     let table = document.getElementById("pendingRidesTable");
     
     if(rides.length == 0){
@@ -47,7 +48,7 @@ function generateRequestedRidesTable(){
         }
 
         let data = Object.keys(rides[0]);
-        generateTableHead(table, data, "DriverMainPage");
+        generateTableHead(table, data, "requested");
         populateRequestedRidesTable(table, rides);
     }  
 }
@@ -57,7 +58,8 @@ Generates table of active rides.
 -Dan Tiberi
 */
 function generateActiveRidesTable(){
-    let rides = getRides("taken");
+    var id = getDriverID(window.localStorage.getItem('driver_email'));
+    let rides = getRides("taken", id);
     let table = document.getElementById("activeRidesTable");
     
     if(rides.length == 0){
@@ -79,7 +81,7 @@ function generateActiveRidesTable(){
         }
 
         let data = Object.keys(rides[0]);
-        generateTableHead(table, data, "DriverMainPage");
+        generateTableHead(table, data, "active");
         populateActiveRidesTable(table, rides);
     }
 }
@@ -91,10 +93,17 @@ Given a table, generates header row.
 function generateTableHead(table, data, style) {
     let thead = table.createTHead();
 
-    if(style == "DriverMainPage"){
+    if(style == "history"){
         thead.className = "thead-light";
-        data[data.length] = "Action"
     }
+    else if(style == "requested" || style == "active"){
+        thead.className = "thead-light";
+        data[data.length] = "Action" //Add column
+        if(style == "active"){
+            data[data.length] = "Complete" //Add column
+        }
+    }
+    
 
     let row = thead.insertRow();
     for (let key of data) {
@@ -165,16 +174,7 @@ function populateRequestedRidesTable(table, data) {
                 case "passenger_id":
                     text = document.createTextNode(getUser(element[key]).fname + " " + getUser(element[key]).lname);
                     break;
-                case "driver_id":
-                    text = document.createTextNode(getDriver(element[key]).lname);
-                    break;
-                case "vehicle_id":
-                    text = document.createTextNode(getVehicle(element[key]).lplate_num);
-                    break;
                 case "fee":
-                    text = document.createTextNode("$"+element[key]);
-                    break;
-                case "tax":
                     text = document.createTextNode("$"+element[key]);
                     break;
             }
@@ -194,10 +194,15 @@ function populateRequestedRidesTable(table, data) {
             if(getRides("taken").length == 0){ //If no ride is currenly selected.
                 //Set ride status to taken, remove from requested table (rebuild table), move to active table.
                 set("rides", "status", "taken", element.ride_id);
+
+                var id = getDriverID(window.localStorage.getItem('driver_email'));
+                set("rides", "driver_id", id, element.ride_id);//Assign ride this driver's id
+                set("drivers", "status", true, id);//Set driver status: true
+
                 document.getElementById("activeRidesTable").innerHTML = "";
                 document.getElementById("pendingRidesTable").innerHTML = "";
                 generateActiveRidesTable(); 
-                generateRequestedRidesTable();   
+                generateRequestedRidesTable(); 
             }        
             else{
                 alert("Only 1 Active Ride Allowed");
@@ -228,7 +233,11 @@ function updateAvail()
     }
     setDriverStatus(id, status_bool);
 }
-  
+
+/*
+Populates active ride table given data
+-Dan Tiberi
+*/
 function populateActiveRidesTable(table, data) {
     for (let element of data) {
         let row = table.insertRow();
@@ -241,16 +250,7 @@ function populateActiveRidesTable(table, data) {
                 case "passenger_id":
                     text = document.createTextNode(getUser(element[key]).fname + " " + getUser(element[key]).lname);
                     break;
-                case "driver_id":
-                    text = document.createTextNode(getDriver(element[key]).lname);
-                    break;
-                case "vehicle_id":
-                    text = document.createTextNode(getVehicle(element[key]).lplate_num);
-                    break;
                 case "fee":
-                    text = document.createTextNode("$"+element[key]);
-                    break;
-                case "tax":
                     text = document.createTextNode("$"+element[key]);
                     break;
             }
@@ -259,12 +259,12 @@ function populateActiveRidesTable(table, data) {
         }
 
         //Cancel button cell
-        let cell = row.insertCell();
-        var button = document.createElement("button");
-        button.innerHTML = "Cancel";
+        let cancelBttnCell = row.insertCell();
+        var cancelBttn = document.createElement("button");
+        cancelBttn.innerHTML = "Cancel";
 
-        //Code for button:
-        button.addEventListener("click", function() {
+        //Code for cancel button:
+        cancelBttn.addEventListener("click", function() {
             //console.log(element); //Gives ride display object.
             
             //Set ride status to requested, remove from taken table (rebuild table), move to requested table.
@@ -275,10 +275,27 @@ function populateActiveRidesTable(table, data) {
             generateRequestedRidesTable();   
             
             var id = getDriverID(window.localStorage.getItem('driver_email'));
-            set("rides", "driver_id", id, element.ride_id);
+            set("rides", "driver_id", -1, element.ride_id);
+            set("drivers", "status", false, id);//Set driver status: false
+        });
+        cancelBttnCell.appendChild(cancelBttn);
+
+        //Complete button cell
+        let completeBttnCell = row.insertCell();
+        var completeBttn = document.createElement("button");
+        completeBttn.innerHTML = "\u2713"; //Unicode check mark
+
+        //Code for complete button:
+        completeBttn.addEventListener("click", function() {
+            set("rides", "status", "complete", element.ride_id);
+            document.getElementById("activeRidesTable").innerHTML = "";
+            generateActiveRidesTable(); 
+            
+            var id = getDriverID(window.localStorage.getItem('driver_email'));
+            set("drivers", "status", false, id);//Set driver status: false
         });
 
-        cell.appendChild(button);
+        completeBttnCell.appendChild(completeBttn);
 
     }
     //displayRoute();
@@ -289,8 +306,6 @@ map related
 "it displays the active route in the map for the driver"
 -Ange Veillon
 */
-
-
 function displayRoute() {
     var id = getDriverID(window.localStorage.getItem('driver_email'));
     console.log(id);
@@ -337,3 +352,4 @@ function setupMap(center) {
     directions.setDestination(dest);
 
     }
+//End of map related
