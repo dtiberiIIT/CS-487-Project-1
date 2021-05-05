@@ -68,7 +68,7 @@
 
     <section class="about section d-flex flex-column justify-content-center align-items-center" >
 <div class="container">
-<center> <h2>Driver Account Settings </h2><p> <h4>Your Rating : 4/5 </h4></p></center> <div> </section>
+<center> <h2>Driver Account Settings </h2><p> <h4>Your Rating : <script>load(); document.write(getDriver(getDriverID(window.localStorage.getItem('driver_email'))).avg_rating)</script> </h4></p></center> <div> </section>
 <!--profile settings-->
        <section class="contact section" id="help">
             <div class="container">
@@ -80,30 +80,27 @@
                           <form action="#" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400" role="form">
 
                             <!-- <label for="fname"><b>FirstName</b></label> -->
-                            <label for="fname"><b><script>load(); document.write(getDriver(getDriverID(window.localStorage.getItem('driver_email'))).fname)</script></b></label>
+                            <label for="fname"><b>FirstName:  <script> document.write(getDriver(getDriverID(window.localStorage.getItem('driver_email'))).fname)</script></b></label>
                              
                               <input type="text" class="form-control" name="cf-name" placeholder="FirstName">
 
                               <!-- <label for="lname"><b>LastName</b></label> -->
-                              <label for="lname"><b><script>document.write(getDriver(getDriverID(window.localStorage.getItem('driver_email'))).lname)</script></b></label>
-                              
+                              <label for="lname"><b>LastName:  <script>document.write(getDriver(getDriverID(window.localStorage.getItem('driver_email'))).lname)</script></b></label>
                               <input type="email" class="form-control" name="cf-name" placeholder="LastName">
 
-                              <label for=""><b>Driver's License Number</b></label>
-                              <input type="text" class="form-control" placeholder="Enter Your Driver's License Number" name="email" required>
+                            
 
-                              <label for=""><b>Vehicle Number Plate</b></label>
+                              <label for=""><b>Vehicle Number Plate:  <script>document.write(getVehicle(getDriverID(window.localStorage.getItem('driver_email'))).lplate_num)</script></b></label>
                               <input type="text" class="form-control" placeholder="Enter Vehicle Number Plate" name="vehiclenumber" required>
 
                               <!-- <label for="email"><b>Email</b></label> -->
-                              <label for="email"><b><script>document.write(getDriver(getDriverID(window.localStorage.getItem('driver_email'))).email)</script></b></label>
-                              
-                              <input type="text" class="form-control" placeholder="Enter Email" name="cf-email" >
+                              <label for="email"><b>Email:  <script>document.write(getDriver(getDriverID(window.localStorage.getItem('driver_email'))).email)</script></b></label>
+                             <input type="text" class="form-control" placeholder="Enter Email" name="cf-email" >
 
-                              <label for="number"><b>Phone Number</b></label>
+                              <label for="number"><b>Phone Number:  <script>document.write(getDriver(getDriverID(window.localStorage.getItem('driver_email'))).phone_number)</script></b></label>
                               <input type="text" placeholder="Enter Phone Number"  class="form-control">
 
-                              <label for="Payment"><b>Car Type</b></label>
+                              <label for="Cartype"><b>Car Type</b></label>
 
 
 
