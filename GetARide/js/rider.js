@@ -134,6 +134,10 @@ function setupMap(center) {
 	}
 }
 
+/*
+Generate table of saved addresses.
+-Dan Tiberi
+*/
 function generateAddressTable(user_id) {
 	/*
 	let addresses = getRides("complete", driver_id);
@@ -142,4 +146,81 @@ function generateAddressTable(user_id) {
 	generateTableHead(table, data, "history");
 	generateTable(table, rides);
 	*/
+
+    //console.log("!GEN ADDRESSES TABLE!");
+
+    let addresses = getAddresses(user_id);
+	let table = document.getElementById("addressesTable");
+
+    if(addresses.length == 0){
+        var tag = document.createElement("h4");
+        var text = document.createTextNode("No Addresses Stored");
+        tag.appendChild(text);
+        table.appendChild(tag);
+        //console.log("!NO STORED ADDRESSES!");
+    }
+    else{
+        //console.log("!STORED ADDRESSES!");
+        for(let field of addresses){
+            delete field.user_id;
+        }
+    
+        let data = Object.keys(addresses[0]);
+    
+        generateAddressTableHead(table, data);
+        populateAddressesTable(table, addresses);
+    }
+}
+
+/*
+Given a table, generates header row.
+-Dan Tiberi
+*/
+function generateAddressTableHead(table, data) {
+    let thead = table.createTHead();
+
+    let row = thead.insertRow();
+    for (let key of data) {
+        let th = document.createElement("th");
+        let text = document.createTextNode(key);
+
+        //Replace '_' in text with spaces and set the first letter of each word to uppercase.
+        let s = String(text.textContent).replace(/_/g," ");
+        const words = s.split(" ");
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+        }
+        text.textContent = words.join(" ");
+
+        th.appendChild(text);
+        row.appendChild(th);
+    }
+}
+
+/*
+Populates requested ride table given data
+-Dan Tiberi
+*/
+function populateAddressesTable(table, data) {
+    for (let element of data) {
+        let row = table.insertRow();
+        for (key in element) {
+            //console.log(key)
+            let cell = row.insertCell();
+            let text = document.createTextNode(element[key]);
+            cell.appendChild(text);
+        }
+
+        //Select button cell
+        let cell = row.insertCell();
+        var button = document.createElement("button");
+        button.innerHTML = "Select";
+
+        //Code for button.
+        button.addEventListener("click", function() {
+            console.log(element); //Gives ride display object.
+        });
+
+        cell.appendChild(button);
+    }
 }

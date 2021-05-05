@@ -1,15 +1,20 @@
 #newRideContainer {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     max-width: 100%;
     min-width: 200px;
     flex-wrap: wrap; 
-    margin-top: 5%;
+    margin-top: 10%;
 }
 
 .newRideCol {
     max-width: 50%;  
     min-width: 200px;
     flex-basis:100%;
+}
+
+h4 {
+    margin-left: auto;
+    margin-right: auto;
 }

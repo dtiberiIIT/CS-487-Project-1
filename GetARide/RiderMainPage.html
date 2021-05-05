@@ -24,6 +24,7 @@
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <link rel="stylesheet" href="css/font-awesome.min.css">
       <link rel="stylesheet" href="css/aos.css">
+      <link rel="stylesheet" href="css/table.css">
       <link rel="stylesheet" href="css/newRide.css">
       <!-- MAIN CSS -->
       <link rel="stylesheet" href="css/tooplate-gymso-style.css">
@@ -44,7 +45,6 @@
       <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
-      <script src="js/crud.js"></script>
       <script src="js/rider.js"></script>
 
       <title> Map for our app  </title>
@@ -104,7 +104,7 @@
             <option value="CC4">Mini Van</option>
             <option value="CC4">SUV</option>
             </select>
-            <center><label><h5>Share the ride    </h5></label>
+            <center><label><h5>Share the ride    </h5></label></form>center>
             <input type="checkbox" name="remember" class="largerCheckbox" style="margin-bottom:10px " ></center>
             <button type="button" class="form-control" id="submit-button" name="submit" onclick=run()><a href="#"  data-toggle="modal" data-target="#membershipForm" >Find Ride</a>
             </button>
@@ -113,10 +113,10 @@
       </form>
       </section>
       <div class="newRideCol">
-        <h4>Stored Addresses</h4>
-        <table data-aos="fade-up"-aos-delay="400"id="addressesTable"></table>
+        <center><h4>Stored Addresses</h4></center>
+        <table id="addressesTable"></table>
         <script type="text/javascript">
-              load(); generateAddressTable(getUserID(window.localStorage.getItem('rider_email')))
+              generateAddressTable(getUserID(window.localStorage.getItem('rider_email')));
         </script>
       </div>
       </div>
