@@ -73,8 +73,8 @@ function DriverLogin(){
         let user = getDriver(getDriverID(email));
         if(user != -1 && getDriver(getDriverID(email)).password == pass) {//If user exists with correct password
             //User exists, store info into local storage.
-            window.localStorage.setItem('driver_email', user.email);
-            window.localStorage.setItem('driver_pass', user.password);
+            window.localStorage.setItem('driver_email', driver.email);
+            window.localStorage.setItem('driver_pass', driver.password);
 
             //console.log(window.localStorage.getItem('driver_email'), window.localStorage.getItem('driver_pass'));
 
@@ -124,6 +124,49 @@ function captureRiderProfileSettings(){
         }
         
         window.open("RiderMainPage.html","_self");
+        return false;
+    }
+    else {
+        alert("Unauthorized Access");
+    }
+}
+
+/*
+Captures changes in settings from Driverprofile.html and stores them in the DB.
+*/
+function captureDriverProfileSettings(){
+    var form = document.getElementById('DriverSettings');
+    var inputs = form.elements;   
+    var email = inputs["dr-email"].value;
+    var phone = inputs["dr-phone"].value;
+    var fname = inputs["dr-fname"].value;
+    var lname = inputs["dr-lname"].value;
+
+    let id = getDriverID(window.localStorage.getItem('driver_email'))
+    email = email.toLowerCase();
+    let user = getDriver(id);
+
+    if(user != -1 && getDriver(id).password == window.localStorage.getItem('driver_pass')) {//If user exists with correct password
+
+        if(email.length!=0 && String(email).includes("@") && String(email).includes(".")){
+            set("drivers", "email", email, id);
+            window.localStorage.setItem('rider_email', email);
+        }
+
+        if(phone.length!=0){
+            set("drivers", "phone_number", phone, id);
+
+        }
+        
+        if(fname.length!=0){
+            set("drivers", "fname", fname, id);
+        }
+
+        if(lname.length!=0){
+            set("drivers", "lname", lname, id);
+        }
+        
+        window.open("Drivermainpage.html","_self");
         return false;
     }
     else {
