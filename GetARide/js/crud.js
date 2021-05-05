@@ -670,3 +670,76 @@ function getActiveRide(driver_id){
         return res;
     }
 }
+
+/*
+Creates a new stored address for the given user.
+Returns -1 if failed, else 1.
+-Dan Tiberi
+*/
+function newAddress(adr, user_id){
+    var res = -1;
+    try{
+        alasql("INSERT INTO addresses (user_id, address) VALUES (" + user_id + ", '" + adr + "')");
+        res = 1
+    } catch (error) {        
+        console.log("Alasql Error: ", error);
+    }
+    return res;
+}
+
+/*
+Gets all stored address for the given user as an array of objects.
+Returns -1 if failed.
+-Dan Tiberi
+*/
+function getAddresses(user_id){
+    var res = -1;
+    try{
+        res = alasql("SELECT * FROM addresses WHERE user_id=" + user_id);
+    } catch (error) {
+        console.log("Alasql Error: ", error);
+    }
+    return res;
+}
+
+/*
+Gets address with given adr_id.
+Returns -1 if failed.
+-Dan Tiberi
+*/
+function getAddress(adr_id){
+    var res = -1;
+    try{
+        res = alasql("SELECT * FROM addresses WHERE adr_id=" + adr_id)[0];
+    } catch (error) {
+        console.log("Alasql Error: ", error);
+    }
+    return res;
+}
+
+/*
+Removes the identified address.
+Returns -1 if failed, else 1.
+-Dan Tiberi
+*/
+function removeAddress(){
+    var res = -1;
+    try{
+        alasql("DELETE FROM addresses WHERE adr_id=" + adr_id);
+        res = 1;
+    } catch (error) {
+        console.log("Alasql Error: ", error);
+    }
+    return res;
+}
+
+function getAddressId(address){
+    var res = -1;
+    try{
+        alasql("SELECT adr_id FROM addresses WHERE adress='" + address + "'");
+        res = 1;
+    } catch (error) {
+        console.log("Alasql Error: ", error);
+    }
+    return res;
+}

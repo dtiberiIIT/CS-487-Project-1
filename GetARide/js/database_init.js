@@ -23,6 +23,7 @@ window.onload = function() {
     alasql("CREATE TABLE IF NOT EXISTS rides (ride_id INT NOT NULL AUTO_INCREMENT, passenger_id INT, driver_id INT, vehicle_id INT, fee DOUBLE, tax DOUBLE, origin VARCHAR(50), destination VARCHAR(50), start_time DATETIME, duration TIME, user_rating INT, payment_card_id INT, status ENUM(requested, taken, complete), PRIMARY KEY (ride_id))");
     alasql("CREATE TABLE IF NOT EXISTS payment_info (card_id INT NOT NULL AUTO_INCREMENT, user_id INT, card_number VARCHAR(20), card_cvv INT, card_type VARCHAR(20), PRIMARY KEY (card_id))");
     alasql("CREATE TABLE IF NOT EXISTS vehicles (vehicle_id INT NOT NULL AUTO_INCREMENT, driver_id INT, lplate_num VARCHAR(20), model_year YEAR, vehicle_make VARCHAR(20), vehicle_model VARCHAR(20), passed_qa BOOLEAN, pas_capacity INT, quality_rating INT, PRIMARY KEY (vehicle_id))");
+    alasql("CREATE TABLE IF NOT EXISTS addresses (adr_id INT NOT NULL AUTO_INCREMENT, user_id INT, address VARCHAR(50), PRIMARY KEY (adr_id))");
     populate(true); //If true, will populate databse with dummy information for demo or testing purposes. 
 };
 
