@@ -234,6 +234,32 @@ function getVehicle(id){
 }
 
 /*
+Returns an array of the vehicles owned by the given driver.
+If the vehicle does not exist or an invalid driver_id is given, it will return -1.
+-Dan Tiberi
+*/
+function getVehicles(driver_id){
+    if(!typeof driver_id == "number"){
+        console.log("Invlaid driver_id: ", driver_id);
+        return -1;
+    }
+    else{
+        res = -2; 
+        try{
+            res = Object.values(alasql("SELECT * FROM vehicles WHERE driver_id=" + driver_id))[0];
+        } catch (error) {
+            res = -1
+            console.log("Alasql Error: ", error);
+        }
+            if(res == null || res == undefined){
+            res = -1;
+            console.log("Undefined driver.");
+        }
+        return res;
+    }
+}
+
+/*
 Returns payment data from the DB given an ID. The data is stored in a generic object as parameters. 
 If the payment method does not exist or an invalid ID is given, it will return -1.
 -Dan Tiberi
