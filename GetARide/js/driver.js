@@ -147,7 +147,7 @@ function populateRequestedRidesTable(table, data) {
 
         //Code for button:
         button.addEventListener("click", function() {
-            console.log(element); //Gives ride display object.
+            //console.log(element); //Gives ride display object.
             
             //Set ride status to taken, remove from requested table (rebuild table), move to active table.
             set("rides", "status", "taken", element.ride_id);
