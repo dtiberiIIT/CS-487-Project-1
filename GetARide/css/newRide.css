@@ -1,0 +1,15 @@
+#newRideContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    min-width: 200px;
+    flex-wrap: wrap; 
+    margin-top: 5%;
+}
+
+.newRideCol {
+    max-width: 50%;  
+    min-width: 200px;
+    flex-basis:100%;
+}
