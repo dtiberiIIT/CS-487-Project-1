@@ -14,7 +14,8 @@
      <link rel="stylesheet" href="css/bootstrap.min.css">
      <link rel="stylesheet" href="css/font-awesome.min.css">
      <link rel="stylesheet" href="css/aos.css">
-
+     <link rel="stylesheet" href="css/table.css">
+     
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/tooplate-gymso-style.css">
 
@@ -24,6 +25,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
 
     <script src="js/crud.js"></script>
+    <script src="js/driver.js"></script>
 
      <!--map style-->
        <meta name="viewport" content="width=device-width ,initial-scale=1.0" >
@@ -188,8 +190,9 @@
                                 <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Pending Rides</h2>
                              </div>
                             <div class="col-lg-12 py-5 col-md-12 col-12">
-                                <table class="table table-bordered table-responsive schedule-table" data-aos="fade-up" data-aos-delay="300">
-
+                                <table id="pendingRidesTable" class="table table-bordered table-responsive schedule-table" data-aos="fade-up" data-aos-delay="300">
+                                  <script type = "text/javascript">load(); generateRequestedRidesTable()</script>
+                                  <!-- 
                                   <thead class="thead-light">
                                       <th>ID</th>
                                       <th>Name</th>
@@ -228,6 +231,7 @@
 
 
                                 </tbody>
+                                 !-->
                             </table>
                         </div>
 
