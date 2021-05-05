@@ -273,7 +273,9 @@ function populateActiveRidesTable(table, data) {
             generateActiveRidesTable(); 
             document.getElementById("pendingRidesTable").innerHTML = "";           
             generateRequestedRidesTable();   
-                    
+            
+            var id = getDriverID(window.localStorage.getItem('driver_email'));
+            set("rides", "driver_id", id, element.ride_id);
         });
 
         cell.appendChild(button);
@@ -291,6 +293,7 @@ map related
 
 function displayRoute() {
     var id = getDriverID(window.localStorage.getItem('driver_email'));
+    console.log(id);
     var dest = getActiveRide(id).destination;
     var orig = getActiveRide(id).origin;
     navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy:true})
