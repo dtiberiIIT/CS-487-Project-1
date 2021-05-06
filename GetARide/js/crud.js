@@ -249,6 +249,34 @@ function getRides(status, driver_id){
     }
 }
 
+
+/*
+Returns all rides with the given status belonging to a passenger_id
+If the driver does not exist or an invalid ID is given, it will return -1.
+-Ange Veillon
+*/
+function getRidesPass(status, passenger_id){
+    if(!typeof status == "string"){
+        console.log("Invlaid status: ", status);
+        return -1;
+    }
+    else if(!typeof passenger_id == "number"){
+        console.log("Invalid passenger_id: ", passenger_id);
+        return -1;
+    }
+    else{
+        res = -2; //Should never reach this 
+        try{
+            res = Object.values(alasql("SELECT * FROM rides WHERE status='" + status + "' AND passenger_id=" + passenger_id));
+        } catch (error) {
+            res = -1
+            console.log("Alasql Error: ", error);
+        }
+        return res;
+    }
+}
+
+
 /*
 Returns vehicle data from the DB given an ID. The data is stored in a generic object as parameters. 
 If the vehicle does not exist or an invalid ID is given, it will return -1.

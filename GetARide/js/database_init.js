@@ -35,7 +35,7 @@ function populate(tog){
 
         newUser("dt@gmail.com", "abc123", "Bob", "Bobbyson", "1947-2-15", "222-222-2222");
 
-        newVehicle(2,"OutATime", 2015, "Toyota", "Prius", true, 3, 5);
+        newVehicle(1,"OutATime", 2015, "Toyota", "Prius", true, 3, 5);
         newVehicle(2,"Got2GoFast", 2019, "Ford", "Fusion", true, 3, 5);
         newVehicle(2,"2Fast4U", 2017, "Honda", "Civic", true, 3, 5);
 
