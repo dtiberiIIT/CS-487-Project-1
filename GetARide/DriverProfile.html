@@ -60,7 +60,7 @@
 						<!-- <label for="lname"><b>LastName</b></label> -->
 						<label for="lname"><b>LastName:  <script>document.write(getDriver(getDriverID(window.localStorage.getItem('driver_email'))).lname)</script></b></label>
 						<input type="text" class="form-control" name="dr-lname" placeholder="LastName">
-						<label for="vehiclenumber"><b>Vehicle Number Plate:  <script>document.write(getVehicle(getDriverID(window.localStorage.getItem('driver_email'))).lplate_num)</script></b></label>
+						<label for="vehiclenumber"><b>Vehicle Number Plate:  <script>document.write(getVehicles(getDriverID(window.localStorage.getItem('driver_email'))).lplate_num)</script></b></label>
 						<input type="text" class="form-control" placeholder="Enter Vehicle Number Plate" name="vehiclenumber">
 						<!-- <label for="email"><b>Email</b></label> -->
 						<label for="email"><b>Email:  <script>document.write(getDriver(getDriverID(window.localStorage.getItem('driver_email'))).email)</script></b></label>

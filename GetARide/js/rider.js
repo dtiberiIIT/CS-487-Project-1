@@ -84,6 +84,7 @@ function setupMap(center) {
 							var tax = price * 0.2;
 							console.log(tax);
 							newRide(getUserID(window.localStorage.getItem('rider_email')), '-1', '-1', price, tax, orig, dest, 1, ans.routes[0].duration, '-1', '-1');
+                            //var intervalId = window.setInterval(function(){check_and_alert();}, 2000);
 						}
 					}
 				}
@@ -125,6 +126,7 @@ function setupMap(center) {
 								var tax = price * 0.2;
 								console.log(tax);
 								newRide(getUserID(window.localStorage.getItem('rider_email')), '-1', '-1', price, tax, orig, dest, 1, ans.routes[0].duration, '-1', '-1');
+                                var inter = window.setInterval(function(){check_and_alert(inter);}, 3000);
 							}
 						}
 					}
@@ -256,4 +258,23 @@ function captureNewAddress() {
 		newAddress(concat, getUserID(window.localStorage.getItem('rider_email')));
 		alert("New Address Added!");
     }
+}
+
+/*
+called each sec to check if the ride was taken and if yes, inform the rider about what vehicle to expect
+-Ange Veillon
+*/
+function check_and_alert(inter){
+    var res = getRidesPass("taken", getUserID(window.localStorage.getItem('rider_email')));
+    if (typeof res !== "undefined"){
+        console.log(res[0]);
+        var v_id = res[0].vehicle_id;
+        var lpn = getVehicle(v_id).lplate_num;
+        var maker = getVehicle(v_id).vehicle_make;
+        var model = getVehicle(v_id).vehicle_model;
+        var text = "Your ride was taken! Look for a " + maker.toString() + " "+ model.toString() + " with license plate: " + lpn.toString();
+        alert(text);
+        clearInterval(inter);
+    }
+
 }
