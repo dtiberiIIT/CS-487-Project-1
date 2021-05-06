@@ -195,10 +195,7 @@ function populateRequestedRidesTable(table, data) {
                 //Set ride status to taken, remove from requested table (rebuild table), move to active table.
                 set("rides", "status", "taken", element.ride_id);
                 var id = getDriverID(window.localStorage.getItem('driver_email'));
-                console.log(getVehicles(id));
-                set("rides", "vehicle_id", getVehicles(id).vehicle_id , element.ride_id);
-                console.log("eh",element.ride_id);
-                console.log("meh",retrieve("rides", "vehicle_id", element.ride_id));
+                //set("rides", "vehicle_id", getVehicles(id).vehicle_id , element.ride_id);
                 set("rides", "driver_id", id, element.ride_id);//Assign ride this driver's id
                 set("drivers", "status", true, id);//Set driver status: true
 
@@ -357,7 +354,8 @@ function setupMap(center) {
 
     var button = document.getElementById("button_route");
     button.addEventListener("click", function() {
-
+    var id = getDriverID(window.localStorage.getItem('driver_email'));
+    set("rides", "vehicle_id", getVehicles(id).vehicle_id , getActiveRide(id).ride_id);
     directions.setOrigin(orig);
     directions.setDestination(dest);  
         
