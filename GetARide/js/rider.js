@@ -230,3 +230,30 @@ function populateAddressesTable(table, data) {
         cell.appendChild(button);
     }
 }
+
+/*
+Captures input from new address form and stores it in the db.
+-Dan Tiberi
+*/
+function captureNewAddress() {
+	var form = document.getElementById('newaddress');
+
+    //Check if required fields are filled
+    requiredFieldsFilled = true;
+    for(var i=0; i < form.elements.length; i++) {
+        if(form.elements[i].value === '' && form.elements[i].hasAttribute('required')){
+            requiredFieldsFilled = false;
+        }
+    }
+
+    if(requiredFieldsFilled){
+        //Check credentials.
+        var inputs = form.elements;   
+		var concat = inputs["na-adr"].value + ", " + inputs["na-city"].value + ", " + inputs["na-state"].value + ", " + inputs["na-zip"].value + ", " + inputs["na-country"].value;
+
+        //console.log(concat);
+        
+		newAddress(concat, getUserID(window.localStorage.getItem('rider_email')));
+		alert("New Address Added!");
+    }
+}
