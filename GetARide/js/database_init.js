@@ -8,7 +8,7 @@
 //Init DB file
 // NOTE! start and end changed to start_time and end_time
 window.onload = function() {
-    localStorage.clear();//Clear localstorage
+    //localStorage.clear();//Clear localstorage
 
     //Init database and save in local storage.
     alasql("SET AUTOCOMMIT ON");
